@@ -30,6 +30,7 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
+  guifont = "JetBrains Mono Light:h10.0",
 }
 
 vim.opt.shortmess:append "c"
@@ -40,4 +41,8 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set guifont=JetBrains\ Mono:h12]]
+
+-- Leader key
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
