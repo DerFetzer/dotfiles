@@ -30,6 +30,16 @@ return require('packer').startup(function(use)
   use 'itchyny/lightline.vim'
   use 'preservim/nerdtree'
   use 'airblade/vim-gitgutter'
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { {'nvim-lua/plenary.nvim'} } }
