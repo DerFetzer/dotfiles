@@ -28,7 +28,6 @@ return require('packer').startup(function(use)
 
     -- Other
     use 'itchyny/lightline.vim'
-    use 'preservim/nerdtree'
     use 'airblade/vim-gitgutter'
     use {
         "folke/which-key.nvim",
@@ -39,6 +38,13 @@ return require('packer').startup(function(use)
                 -- refer to the configuration section below
             }
         end
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
     -- Telescope
