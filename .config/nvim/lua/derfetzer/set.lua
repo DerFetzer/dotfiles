@@ -30,13 +30,18 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
-  guifont = "JetBrains Mono Light:h10.0",
 }
 
 vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
+end
+
+if vim.fn.has("win32") == 1 then
+    vim.opt.guifont = "JetBrains Mono:h10.0"
+else
+    vim.opt.guifont = "JetBrains Mono Light:h10.0"
 end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
