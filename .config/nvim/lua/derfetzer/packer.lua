@@ -19,6 +19,8 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
 
+    use 'simrat39/symbols-outline.nvim'
+
     -- Debugging
     use 'nvim-lua/plenary.nvim'
     use 'mfussenegger/nvim-dap'
