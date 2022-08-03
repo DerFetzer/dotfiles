@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
 
+    -- cmp
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'hrsh7th/cmp-buffer'
@@ -19,7 +20,10 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
 
-    use 'simrat39/symbols-outline.nvim'
+    use {
+	    "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 
     -- Debugging
     use 'nvim-lua/plenary.nvim'
@@ -58,6 +62,7 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+    use 'simrat39/symbols-outline.nvim'
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { { 'nvim-lua/plenary.nvim' } } }
