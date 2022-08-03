@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
 
     use {
-	    "windwp/nvim-autopairs",
+        "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
 
@@ -64,6 +64,7 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/symbols-outline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
+    use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { { 'nvim-lua/plenary.nvim' } } }
