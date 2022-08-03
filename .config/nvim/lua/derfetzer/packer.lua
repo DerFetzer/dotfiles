@@ -63,6 +63,7 @@ return require('packer').startup(function(use)
         end
     }
     use 'simrat39/symbols-outline.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { { 'nvim-lua/plenary.nvim' } } }

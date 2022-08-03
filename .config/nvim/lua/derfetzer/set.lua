@@ -39,7 +39,7 @@ for k, v in pairs(options) do
 end
 
 if vim.fn.has("win32") == 1 then
-    vim.opt.guifont = "JetBrains Mono:h10.0"
+    vim.opt.guifont = "JetBrainsMono Nerd Font:h10.0"
 else
     vim.opt.guifont = "JetBrains Mono Light:h10.0"
 end
