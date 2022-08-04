@@ -1,3 +1,10 @@
+-- Enabling highlight on Windows by default crashes nvim
+local enable_highlight
+if vim.fn.has("win32") then
+    enable_highlight = false
+else
+    enable_highlight = true
+end
 require 'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
     ensure_installed = { "c", "lua", "python", "rust", "cpp" },
@@ -13,7 +20,7 @@ require 'nvim-treesitter.configs'.setup {
 
     highlight = {
         -- `false` will disable the whole extension
-        enable = true,
+        enable = enable_highlight,
 
         -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
         -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
