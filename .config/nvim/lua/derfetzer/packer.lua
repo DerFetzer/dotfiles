@@ -64,21 +64,19 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/symbols-outline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require('auto-session').setup {}
+        end
+    }
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
 
     -- Telescope
-    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { { 'nvim-lua/plenary.nvim' } } }
+    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
+        requires = { { 'nvim-lua/plenary.nvim' }, { "nvim-telescope/telescope-live-grep-args.nvim" } } }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use { 'nvim-telescope/telescope-ui-select.nvim' }
-    use {
-        "nvim-telescope/telescope.nvim",
-        requires = {
-            { "nvim-telescope/telescope-live-grep-args.nvim" },
-        },
-        config = function()
-            require("telescope").load_extension("live_grep_args")
-        end
-    }
 
     -- Treesitter
     use {
