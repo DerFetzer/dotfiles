@@ -14,9 +14,11 @@ local on_attach = function(client, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     wk.register({
         ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
-        ['gd'] = { vim.lsp.buf.definition, "Go to definition" },
+        ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+        ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
+        ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
+        ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
         ['K'] = { vim.lsp.buf.hover, "Hover" },
-        ['gi'] = { vim.lsp.buf.implementation, "Go to implementation" },
         ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
         ['<leader>wa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
         ['<leader>wr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
@@ -25,10 +27,9 @@ local on_attach = function(client, bufnr)
         ['<leader>D'] = { vim.lsp.buf.type_definition, "Go to type definition" },
         ['<leader>rn'] = { vim.lsp.buf.rename, "Rename" },
         ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
-        ['gr'] = { vim.lsp.buf.references, "Show references" },
         ['<leader>f'] = { vim.lsp.buf.formatting, "Format" },
     },
-    { buffer = bufnr })
+        { buffer = bufnr })
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())

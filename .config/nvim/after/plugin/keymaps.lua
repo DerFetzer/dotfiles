@@ -6,7 +6,7 @@ wk.register({
     ['<leader>e'] = { vim.diagnostic.open_float, "Diagnostics open" },
     ['[d'] = { vim.diagnostic.goto_prev, "Diagnostics previous" },
     [']d'] = { vim.diagnostic.goto_next, "Diagnostics next" },
-    ['<leader>q'] = { vim.diagnostic.setloclist, "Diagnostics locations" },
+    ['<leader>E'] = { vim.diagnostic.setloclist, "Diagnostics locations" },
 })
 
 -- Telescope
@@ -15,8 +15,46 @@ wk.register({
     t = {
         name = "Telescope",
         t = { "<cmd>Telescope<cr>", "List builtin pickers" },
-        f = { "<cmd>Telescope find_files hidden=true<cr>", "Find files" },
+        h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden files" },
+        f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
         b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
+        s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find workspace symbols" },
     }
 }, { prefix = "<leader>" })
+
+-- buffers
+local function closeBuffer()
+    local treeView = require('nvim-tree.view')
+    local bufferline = require('bufferline')
+
+    -- check if NvimTree window was open
+    local explorerWindow = treeView.get_winnr()
+    if explorerWindow == nil then
+        vim.cmd('bdelete! ')
+        return
+    end
+    local wasExplorerOpen = vim.api.nvim_win_is_valid(explorerWindow)
+
+    local bufferToDelete = vim.api.nvim_get_current_buf()
+
+    -- TODO: handle modified buffers
+    -- local isModified = vim.api.nvim_eval('getbufvar(' .. bufferToDelete .. ', "&mod")')
+
+    if (wasExplorerOpen) then
+        -- switch to previous buffer (tracked by bufferline)
+        bufferline.cycle(-1)
+    end
+
+    -- delete initially open buffer
+    vim.cmd('bdelete! ' .. bufferToDelete)
+end
+
+wk.register({
+    q = { closeBuffer, "Close current buffer" }
+}, { prefix = "<leader>" })
+
+wk.register({
+    ['('] = { "<cmd>BufferLineCyclePrev<cr>", "Previous buffer" },
+    [')'] = { "<cmd>BufferLineCycleNext<cr>", "Next buffer" },
+})
