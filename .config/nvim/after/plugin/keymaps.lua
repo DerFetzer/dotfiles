@@ -57,3 +57,12 @@ wk.register({
     ['('] = { "<cmd>BufferLineCyclePrev<cr>", "Previous buffer" },
     [')'] = { "<cmd>BufferLineCycleNext<cr>", "Next buffer" },
 })
+
+-- ToggleTerm
+local function termcodes(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+wk.register({
+    ["<esc>"] = { termcodes("<C-\\><C-N>"), "End terminal mode" }
+}, { mode = "t" })
