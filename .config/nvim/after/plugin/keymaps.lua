@@ -19,7 +19,6 @@ wk.register({
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
         b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
-        s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find workspace symbols" },
     }
 }, { prefix = "<leader>" })
 
