@@ -10,6 +10,10 @@ require('telescope').setup {
             "--smart-case",
             "--max-count=5" -- Limit number of matches per file
         },
+        cache_picker = {
+            num_pickers = 5,
+            limit_entries = 1000,
+        },
     },
     extensions = {
         ["ui-select"] = {

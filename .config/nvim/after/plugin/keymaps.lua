@@ -19,6 +19,8 @@ wk.register({
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
         b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
+        r = { "<cmd>Telescope resume<cr>", "Last picker" },
+        o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
     }
 }, { prefix = "<leader>" })
 
@@ -50,7 +52,8 @@ local function closeBuffer()
 end
 
 wk.register({
-    q = { closeBuffer, "Close current buffer" }
+    q = { closeBuffer, "Close current buffer" },
+    ["<leader>"] = { "<cmd>w<cr>", "Write current buffer" }
 }, { prefix = "<leader>" })
 
 wk.register({
