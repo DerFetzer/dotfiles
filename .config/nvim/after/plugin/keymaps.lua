@@ -21,6 +21,7 @@ wk.register({
         b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
         r = { "<cmd>Telescope resume<cr>", "Last picker" },
         o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
+        n = { "<cmd>Telescope grep_string<cr>", "Grep in files for word under cursor" },
     }
 }, { prefix = "<leader>" })
 

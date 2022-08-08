@@ -31,13 +31,20 @@ return require('packer').startup(function(use)
 
     -- Color
     use 'doums/darcula'
+    use { "derfetzer/darcula-solid.nvim", branch = "lsp-reference", requires = "rktjmp/lush.nvim" }
+    use "EdenEast/nightfox.nvim"
+    use 'folke/tokyonight.nvim'
+    use { "ellisonleao/gruvbox.nvim" }
 
     -- Other
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use 'airblade/vim-gitgutter'
+    use {
+        'lewis6991/gitsigns.nvim',
+        -- tag = 'release' -- To use the latest release
+    }
     use {
         "folke/which-key.nvim",
         config = function()
