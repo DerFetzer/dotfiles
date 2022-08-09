@@ -19,6 +19,7 @@ local on_attach = function(client, bufnr)
         ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
         ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
         ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>", "Find workspace symbols" },
+        ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
         ['K'] = { vim.lsp.buf.hover, "Hover" },
         ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
         ['<leader>wa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
