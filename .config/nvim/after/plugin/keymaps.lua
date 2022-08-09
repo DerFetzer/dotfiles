@@ -70,3 +70,16 @@ end
 wk.register({
     ["<esc>"] = { termcodes("<C-\\><C-N>"), "End terminal mode" }
 }, { mode = "t" })
+
+-- Git
+wk.register({
+    g = {
+        name = "Git",
+        b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
+        B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame current line" },
+        d = { "<cmd>Gitsigns diffthis<cr>", "Diff" },
+        p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
+        h = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
+        H = { "<cmd>Gitsigns previous_hunk<cr>", "Previous hunk" },
+    }
+}, { prefix = "<leader>" })
