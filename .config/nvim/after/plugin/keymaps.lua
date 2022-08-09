@@ -83,3 +83,23 @@ wk.register({
         H = { "<cmd>Gitsigns previous_hunk<cr>", "Previous hunk" },
     }
 }, { prefix = "<leader>" })
+
+-- Debugging
+local dap = require('dap')
+wk.register({
+    d = {
+        name = "Debugging",
+        b = { dap.toggle_breakpoint, "Toggle breakpoint" },
+        B = { function()
+            dap.set_breakpoint(vim.fn.input('Condition: '))
+        end,
+            "Set conditional breakpoint" },
+    }
+}, { prefix = "<leader>" })
+
+wk.register({
+    ["<F8>"] = { dap.step_into, "Step into" },
+    ["<F9>"] = { dap.step_over, "Step over" },
+    ["<F10>"] = { dap.continue, "Start/Continue debugging" },
+    ["<S-F8>"] = { dap.step_out, "Step out" },
+})

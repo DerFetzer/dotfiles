@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'mfussenegger/nvim-dap'
     use 'mfussenegger/nvim-dap-python'
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     -- Color
     use 'doums/darcula'
@@ -79,6 +80,7 @@ return require('packer').startup(function(use)
         end
     }
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
+    use 'ggandor/leap.nvim'
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
