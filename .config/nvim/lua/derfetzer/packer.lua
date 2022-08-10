@@ -7,6 +7,13 @@ return require('packer').startup(function(use)
     -- Rust
     use 'neovim/nvim-lspconfig'
     use 'simrat39/rust-tools.nvim'
+    use {
+        'saecki/crates.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('crates').setup()
+        end,
+    }
 
     -- cmp
     use 'hrsh7th/cmp-nvim-lsp'

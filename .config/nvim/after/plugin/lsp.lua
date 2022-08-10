@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
         ['<leader>wr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
         ['<leader>wl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
             "List workspace foders" },
-        ['<leader>rn'] = { vim.lsp.buf.rename, "Rename" },
+        ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
         ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
         ['<leader>f'] = { vim.lsp.buf.formatting, "Format" },
     },
@@ -54,7 +54,8 @@ end
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Setup rust_analyzer via rust-tools.nvim
-require("rust-tools").setup({
+local rt = require("rust-tools")
+rt.setup({
     tools = {
         on_initialized = function()
             vim.cmd [[
@@ -64,7 +65,18 @@ require("rust-tools").setup({
     },
     server = {
         capabilities = capabilities,
-        on_attach = on_attach,
+        on_attach = function(client, buffer)
+            on_attach(client, buffer)
+            wk.register({
+                r = {
+                    name = "Rust",
+                    r = { rt.runnables.runnables, "Runnables" },
+                    d = { rt.debuggables.debuggables, "Debuggables" },
+                    k = { rt.hover_actions.hover_actions, "Hover actions" },
+                    c = { rt.code_action_group.code_action_group, "Code action group" },
+                }
+            }, { prefix = "<leader>", buffer = buffer })
+        end,
     }
 })
 
