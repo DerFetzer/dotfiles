@@ -91,6 +91,14 @@ return require('packer').startup(function(use)
     }
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
     use 'ggandor/leap.nvim'
+    use({
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
