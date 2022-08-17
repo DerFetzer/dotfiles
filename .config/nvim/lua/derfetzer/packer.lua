@@ -99,6 +99,10 @@ return require('packer').startup(function(use)
             })
         end
     })
+    use {
+        "derfetzer/pytask.nvim",
+        config = function() require("pytask").setup() end
+    }
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
