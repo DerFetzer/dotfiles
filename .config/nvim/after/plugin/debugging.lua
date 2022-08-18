@@ -1,6 +1,6 @@
 local py
 if vim.fn.has("win32") == 1 then
-    py = "c:\\Python39\\scripts\\python.exe"
+    py = "c:\\Python39\\python.exe"
 else
     py = "/usr/bin/python"
 end
