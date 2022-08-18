@@ -10,7 +10,7 @@ wk.register({
 })
 
 -- Telescope
--- local tele = require("telescope.builtin")
+local tele = require("telescope.builtin")
 wk.register({
     t = {
         name = "Telescope",
@@ -18,6 +18,12 @@ wk.register({
         h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden files" },
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
+        l = {
+            name = "Find files of language",
+            p = { function() tele.live_grep({ glob_pattern = { '*.py', '*.pxi' } }) end, "Python" },
+            r = { function() tele.live_grep({ glob_pattern = { '*.rs', 'Cargo.toml' } }) end, "Rust" },
+            c = { function() tele.live_grep({ glob_pattern = { '*.c', '*.h', '*.cpp', '*.hpp' } }) end, "C/C++" },
+        },
         b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
         r = { "<cmd>Telescope resume<cr>", "Last picker" },
         o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
