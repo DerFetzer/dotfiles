@@ -103,3 +103,13 @@ wk.register({
     ["<F10>"] = { dap.continue, "Start/Continue debugging" },
     ["<S-F8>"] = { dap.step_out, "Step out" },
 })
+
+-- Panels
+wk.register({
+    p = {
+        name = "Panels",
+        t = { "<cmd>NvimTreeToggle<cr>", "Nvim Tree" },
+        f = { "<cmd>NvimTreeFindFile<cr>", "Find file in Nvim Tree" },
+        o = { "<cmd>SymbolsOutline<cr>", "Outline" }
+    }
+}, { prefix = "<leader>" })
