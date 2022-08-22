@@ -28,6 +28,7 @@ wk.register({
         r = { "<cmd>Telescope resume<cr>", "Last picker" },
         o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
         n = { "<cmd>Telescope grep_string<cr>", "Grep in files for word under cursor" },
+        H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
     }
 }, { prefix = "<leader>" })
 
@@ -92,6 +93,7 @@ wk.register({
 
 -- Debugging
 local dap = require('dap')
+local dapui = require('dapui')
 wk.register({
     d = {
         name = "Debugging",
@@ -100,6 +102,7 @@ wk.register({
             dap.set_breakpoint(vim.fn.input('Condition: '))
         end,
             "Set conditional breakpoint" },
+        u = { dapui.toggle, "UI" },
     }
 }, { prefix = "<leader>" })
 
@@ -123,4 +126,4 @@ wk.register({
 -- Insert
 wk.register({
     ["<C-BS>"] = { "<C-W>", "Delete word before cursor" },
-}, { mode = "i"})
+}, { mode = "i" })
