@@ -119,3 +119,8 @@ wk.register({
         o = { "<cmd>SymbolsOutline<cr>", "Outline" }
     }
 }, { prefix = "<leader>" })
+
+-- Insert
+wk.register({
+    ["<C-BS>"] = { "<C-W>", "Delete word before cursor" },
+}, { mode = "i"})
