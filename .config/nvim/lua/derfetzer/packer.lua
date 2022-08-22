@@ -40,6 +40,8 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-dap'
     use { 'mfussenegger/nvim-dap-python', branch = "multi-session" }
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason-lspconfig.nvim' }
 
     -- Color
     use 'doums/darcula'

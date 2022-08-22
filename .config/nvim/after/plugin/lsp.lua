@@ -1,5 +1,8 @@
 local wk = require("which-key")
 
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 -- Mappings.
 
 -- Use an on_attach function to only map the following keys
