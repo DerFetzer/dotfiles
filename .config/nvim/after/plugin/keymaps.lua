@@ -79,6 +79,7 @@ wk.register({
 }, { mode = "t" })
 
 -- Git
+local neogit = require('neogit')
 wk.register({
     g = {
         name = "Git",
@@ -88,6 +89,7 @@ wk.register({
         p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
         h = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
         H = { "<cmd>Gitsigns previous_hunk<cr>", "Previous hunk" },
+        n = { neogit.open, "Neogit" },
     }
 }, { prefix = "<leader>" })
 

@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         -- tag = 'release' -- To use the latest release
     }
+    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use {
         "folke/which-key.nvim",
         config = function()
