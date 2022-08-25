@@ -86,12 +86,14 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/symbols-outline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    use {
-        'rmagatti/auto-session',
-        config = function()
-            require('auto-session').setup {}
-        end
-    }
+    if not vim.fn.has("win32") then
+        use {
+            'rmagatti/auto-session',
+            config = function()
+                require('auto-session').setup {}
+            end
+        }
+    end
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
     use 'ggandor/leap.nvim'
     use({
