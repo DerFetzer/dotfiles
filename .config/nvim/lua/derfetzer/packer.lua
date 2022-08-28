@@ -108,6 +108,7 @@ return require('packer').startup(function(use)
         "derfetzer/pytask.nvim",
         config = function() require("pytask").setup() end
     }
+    use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
