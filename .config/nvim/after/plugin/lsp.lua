@@ -80,6 +80,13 @@ rt.setup({
                 }
             }, { prefix = "<leader>", buffer = buffer })
         end,
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                }
+            }
+        }
     }
 })
 
@@ -117,4 +124,10 @@ require 'lspconfig'.sumneko_lua.setup {
 require 'lspconfig'.clangd.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+}
+
+
+-- Diagnostics
+vim.diagnostic.config {
+    update_in_insert = true,
 }
