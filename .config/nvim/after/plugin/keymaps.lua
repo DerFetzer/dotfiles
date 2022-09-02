@@ -18,6 +18,12 @@ wk.register({
         h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden files" },
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
+        G = {
+            name = "Git",
+            h = { "<cmd>Telescope git_bcommits<cr>", "Buffer history" },
+            H = { "<cmd>Telescope git_commits<cr>", "History" },
+            b = { "<cmd>Telescope git_branches<cr>", "Branches" },
+        },
         l = {
             name = "Find files of language",
             p = { function() tele.live_grep({ glob_pattern = { '*.py', '*.pxi' } }) end, "Python" },
