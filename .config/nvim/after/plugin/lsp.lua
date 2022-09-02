@@ -131,3 +131,22 @@ require 'lspconfig'.clangd.setup {
 vim.diagnostic.config {
     update_in_insert = true,
 }
+
+-- null-ls
+local pylint_with = {}
+
+if vim.fn.filereadable("configPyLint.pylintrc") then
+    pylint_with = {
+        extra_args = { "--rcfile=configPyLint.pylintrc" }
+    }
+end
+
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.diagnostics.pylint.with(pylint_with),
+        require("null-ls").builtins.diagnostics.hadolint,
+        require("null-ls").builtins.diagnostics.luacheck,
+        require("null-ls").builtins.diagnostics.rstcheck,
+        require("null-ls").builtins.diagnostics.cppcheck,
+    },
+})
