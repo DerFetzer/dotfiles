@@ -1,5 +1,5 @@
 -- Using cygwin compiler on Windows crashes nvim
-if vim.fn.has("win32") then
+if vim.fn.has("win32") == 1 then
     require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
 end
 require 'nvim-treesitter.configs'.setup {

@@ -89,7 +89,7 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/symbols-outline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    if not vim.fn.has("win32") then
+    if vim.fn.has("win32") == 0 then
         use {
             'rmagatti/auto-session',
             config = function()

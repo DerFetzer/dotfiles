@@ -58,6 +58,39 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 -- Setup rust_analyzer via rust-tools.nvim
 local rt = require("rust-tools")
+
+local settings
+local dir_names = vim.fn.split(vim.fn.getcwd(), "/")
+local dir_name = dir_names[#dir_names]
+
+if dir_name == "rust" then
+    -- Overrides for rustc
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                overrideCommand = { "python3", "x.py", "check", "--json-output" }
+            },
+            rustfmt = {
+                overrideCommand = { "./build/x86_64-unknown-linux-gnu/stage0/bin/rustfmt", "--edition=2021" }
+            },
+            buildScript = {
+                overrideCommand = { "python3", "x.py", "check", "--json-output" }
+            },
+            rustc = {
+                source = { "./Cargo.toml" }
+            }
+        }
+    }
+else
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            }
+        }
+    }
+end
+
 rt.setup({
     tools = {
         on_initialized = function()
@@ -80,13 +113,7 @@ rt.setup({
                 }
             }, { prefix = "<leader>", buffer = buffer })
         end,
-        settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy"
-                }
-            }
-        }
+        settings = settings
     }
 })
 
