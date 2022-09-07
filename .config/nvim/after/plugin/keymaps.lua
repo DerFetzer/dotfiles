@@ -127,7 +127,8 @@ wk.register({
         name = "Panels",
         t = { "<cmd>NvimTreeToggle<cr>", "Nvim Tree" },
         f = { "<cmd>NvimTreeFindFile<cr>", "Find file in Nvim Tree" },
-        o = { "<cmd>SymbolsOutline<cr>", "Outline" }
+        o = { "<cmd>SymbolsOutline<cr>", "Outline" },
+        u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
     }
 }, { prefix = "<leader>" })
 
