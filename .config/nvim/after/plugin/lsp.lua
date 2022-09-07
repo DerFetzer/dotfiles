@@ -172,7 +172,8 @@ require("null-ls").setup({
     sources = {
         require("null-ls").builtins.diagnostics.pylint.with(pylint_with),
         require("null-ls").builtins.diagnostics.hadolint,
-        require("null-ls").builtins.diagnostics.luacheck,
+        -- require("null-ls").builtins.diagnostics.luacheck,
+        require("null-ls").builtins.diagnostics.selene,
         require("null-ls").builtins.diagnostics.rstcheck,
         require("null-ls").builtins.diagnostics.cppcheck,
     },
