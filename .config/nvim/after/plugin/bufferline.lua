@@ -8,8 +8,14 @@ require('bufferline').setup {
                 text = "File Explorer",
                 highlight = "Directory",
                 text_align = "left"
+            },
+            {
+                filetype = "undotree",
+                text = "Undotree",
+                highlight = "Directory",
+                text_align = "left"
             }
+
         },
     }
 }
-print("bufferline")
