@@ -1,0 +1,10 @@
+shell:
+  program: zsh
+  args:
+      - --login
+
+font:
+  normal:
+    family: "JetBrainsMono Nerd Font"
+
+  size: 10.0
