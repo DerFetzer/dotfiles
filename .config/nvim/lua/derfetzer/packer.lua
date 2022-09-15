@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
 
     -- Color
     use 'doums/darcula'
-    use { "derfetzer/darcula-solid.nvim", branch = "lsp-reference", requires = "rktjmp/lush.nvim" }
+    use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
     use "EdenEast/nightfox.nvim"
     use 'folke/tokyonight.nvim'
     use { "ellisonleao/gruvbox.nvim" }
