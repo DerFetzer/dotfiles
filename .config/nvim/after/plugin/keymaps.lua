@@ -35,6 +35,7 @@ wk.register({
         o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
         n = { "<cmd>Telescope grep_string<cr>", "Grep in files for word under cursor" },
         H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+        w = { "<cmd>Telescope workspaces<cr>", "Workspaces" },
     }
 }, { prefix = "<leader>" })
 

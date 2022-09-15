@@ -94,10 +94,20 @@ return require('packer').startup(function(use)
         use {
             'rmagatti/auto-session',
             config = function()
-                require('auto-session').setup {}
+                require('auto-session').setup {
+                    cwd_change_handling = {
+                        restore_upcoming_session = true,
+                    }
+                }
             end
         }
     end
+    use {
+        'natecraddock/workspaces.nvim',
+        config = function()
+            require('workspaces').setup {}
+        end
+    }
     use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
     use 'ggandor/leap.nvim'
     use({
