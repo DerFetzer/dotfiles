@@ -46,6 +46,18 @@ return require('packer').startup(function(use)
     use { 'williamboman/mason.nvim' }
     use { 'williamboman/mason-lspconfig.nvim' }
 
+    -- Test
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim"
+        }
+    }
+    use 'nvim-neotest/neotest-python'
+    use 'rouge8/neotest-rust'
+
     -- Color
     use 'doums/darcula'
     use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
