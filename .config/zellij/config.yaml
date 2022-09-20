@@ -7,9 +7,11 @@
 
 keybinds:
   normal:
-    - unbind: [ Ctrl: 's'] 
+    - unbind: [Ctrl: 's',  Ctrl: 'h'] 
     - action: [SwitchToMode: Scroll,]
       key: [Ctrl: 'f',]
+    - action: [SwitchToMode: Move,]
+      key: [Ctrl: 'v',]
 
 plugins:
     - path: tab-bar
