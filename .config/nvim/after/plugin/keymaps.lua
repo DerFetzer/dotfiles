@@ -96,6 +96,8 @@ wk.register({
         p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
         h = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
         H = { "<cmd>Gitsigns previous_hunk<cr>", "Previous hunk" },
+        r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset hunk" },
+        R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset buffer" },
         n = { neogit.open, "Neogit" },
     }
 }, { prefix = "<leader>" })
