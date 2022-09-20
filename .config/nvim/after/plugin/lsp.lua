@@ -162,7 +162,7 @@ vim.diagnostic.config {
 -- null-ls
 local pylint_with = {}
 
-if vim.fn.filereadable("configPyLint.pylintrc") == true then
+if vim.fn.filereadable("configPyLint.pylintrc") == 1 then
     pylint_with = {
         extra_args = { "--rcfile=configPyLint.pylintrc" }
     }
