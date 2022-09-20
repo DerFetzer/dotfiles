@@ -6,5 +6,9 @@ shell:
 font:
   normal:
     family: "JetBrainsMono Nerd Font"
+    style: "Medium"
 
   size: 9.5
+
+window:
+  startup_mode: maximized
