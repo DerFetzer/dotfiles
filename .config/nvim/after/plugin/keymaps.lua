@@ -136,4 +136,5 @@ wk.register({
 -- Insert
 wk.register({
     ["<C-BS>"] = { "<C-W>", "Delete word before cursor" },
+    ["<C-H>"] = { "<C-W>", "Delete word before cursor" },
 }, { mode = "i" })
