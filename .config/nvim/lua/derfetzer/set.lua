@@ -43,6 +43,7 @@ vim.opt.guifont = "JetBrainsMono Nerd Font:h10.0"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd "set sessionoptions+=globals"
+vim.cmd "set title"
 
 -- Leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
