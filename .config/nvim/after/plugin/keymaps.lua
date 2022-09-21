@@ -11,6 +11,7 @@ wk.register({
 
 -- Telescope
 local tele = require("telescope.builtin")
+local tele_utils = require("telescope.utils")
 wk.register({
     t = {
         name = "Telescope",
@@ -25,7 +26,7 @@ wk.register({
             b = { "<cmd>Telescope git_branches<cr>", "Branches" },
         },
         l = {
-            name = "Find files of language",
+            name = "Grep in files of language",
             p = { function() tele.live_grep({ glob_pattern = { '*.py', '*.pxi' } }) end, "Python" },
             r = { function() tele.live_grep({ glob_pattern = { '*.rs', 'Cargo.toml' } }) end, "Rust" },
             c = { function() tele.live_grep({ glob_pattern = { '*.c', '*.h', '*.cpp', '*.hpp' } }) end, "C/C++" },
@@ -36,6 +37,7 @@ wk.register({
         n = { "<cmd>Telescope grep_string<cr>", "Grep in files for word under cursor" },
         H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
         w = { "<cmd>Telescope workspaces<cr>", "Workspaces" },
+        d = { function() tele.live_grep({ cwd = tele_utils.buffer_dir() }) end, "Grep in files in buffer folder" },
     }
 }, { prefix = "<leader>" })
 
