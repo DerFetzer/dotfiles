@@ -19,6 +19,7 @@ local on_attach = function(client, bufnr)
         ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
         ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
         ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
+        ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
         ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
         ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
         ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>", "Find workspace symbols" },
