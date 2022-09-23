@@ -68,7 +68,7 @@ return require('packer').startup(function(use)
     -- Other
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use {
         'lewis6991/gitsigns.nvim',
@@ -135,6 +135,13 @@ return require('packer').startup(function(use)
         config = function() require("pytask").setup() end
     }
     use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
+    }
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
