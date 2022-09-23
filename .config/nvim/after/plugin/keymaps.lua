@@ -142,3 +142,49 @@ wk.register({
     ["<C-BS>"] = { "<C-W>", "Delete word before cursor" },
     ["<C-H>"] = { "<C-W>", "Delete word before cursor" },
 }, { mode = "i" })
+
+
+-- Crates
+local crates = require('crates')
+wk.register({
+    C = {
+        name = "Crates",
+        t = { crates.toggle, "Toggle" },
+        r = { crates.reload, "Reload" },
+
+        v = { crates.show_versions_popup, "Show versions" },
+        f = { crates.show_features_popup, "Show features" },
+        d = { crates.show_dependencies_popup, "Show dependencies" },
+
+        u = { crates.update_crate, "Update crate" },
+        a = { crates.update_all_crates, "Update all crates" },
+        U = { crates.upgrade_crate, "Upgrade crate" },
+        A = { crates.upgrade_all_crates, "Upgrade all crates" },
+
+        H = { crates.open_homepage, "Open homepage" },
+        R = { crates.open_repository, "Open repo´" },
+        D = { crates.open_documentation, "Open docs" },
+        C = { crates.open_crates_io, "Open crates.io" },
+    }
+}, { prefix = "<leader>" })
+
+wk.register({
+    C = {
+        name = "Crates",
+        u = { crates.update_crates, "Update crates" },
+        U = { crates.upgrade_crates, "Upgrade crates" },
+    }
+}, { prefix = "<leader>", mode = "v" })
+
+
+-- Trouble
+wk.register({
+    x = {
+        name = "Trouble",
+        x = { "<cmd>TroubleToggle<cr>", "Toggle" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+    }
+}, { prefix = "<leader>" })
