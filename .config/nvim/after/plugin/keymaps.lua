@@ -188,3 +188,8 @@ wk.register({
         q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
     }
 }, { prefix = "<leader>" })
+
+-- Windows
+wk.register({
+    w = { "<cmd>WhichKey <c-w><cr>", "Window" }
+}, { prefix = "<leader>" })
