@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
             "List workspace foders" },
         ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
         ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
-        ['<leader>f'] = { vim.lsp.buf.formatting, "Format" },
+        ['<leader>f'] = { vim.lsp.buf.format, "Format" },
     },
         { buffer = bufnr })
 
@@ -55,7 +55,7 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Setup rust_analyzer via rust-tools.nvim
 local rt = require("rust-tools")
@@ -177,5 +177,6 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.selene,
         require("null-ls").builtins.diagnostics.rstcheck,
         require("null-ls").builtins.diagnostics.cppcheck,
+        require("null-ls").builtins.formatting.black,
     },
 })
