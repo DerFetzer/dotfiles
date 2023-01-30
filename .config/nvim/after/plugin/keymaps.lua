@@ -193,3 +193,10 @@ wk.register({
 wk.register({
     w = { "<cmd>WhichKey <c-w><cr>", "Window" }
 }, { prefix = "<leader>" })
+
+
+-- Navigation
+wk.register({
+    ["<C-D>"] = { "<C-D>zz", "Down" },
+    ["<C-U>"] = { "<C-U>zz", "Up" },
+})
