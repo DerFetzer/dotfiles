@@ -4,9 +4,46 @@ local luasnip = require("luasnip")
 
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local handlers = require('nvim-autopairs.completion.handlers')
+
 cmp.event:on(
     'confirm_done',
-    cmp_autopairs.on_confirm_done()
+    cmp_autopairs.on_confirm_done({
+        filetypes = {
+            -- "*" is a alias to all filetypes
+            ["*"] = {
+                ["("] = {
+                    kind = {
+                        cmp.lsp.CompletionItemKind.Function,
+                        cmp.lsp.CompletionItemKind.Method,
+                    },
+                    handler = handlers["*"]
+                }
+            },
+            rust = {
+                ["("] = {
+                    kind = {
+                        cmp.lsp.CompletionItemKind.Function,
+                        cmp.lsp.CompletionItemKind.Method
+                    },
+                    ---@param char string
+                    ---@param item table item completion
+                    ---@param bufnr number buffer number
+                    ---@param rules table
+                    ---@param commit_character table<string>
+                    handler = function(char, item, bufnr, rules, commit_character)
+                        -- vim.notify(vim.inspect { char, item, bufnr, rules, commit_character })
+                        local line_num = item.textEdit.insert.start.line
+                        local line = vim.api.nvim_buf_get_lines(bufnr, line_num, line_num + 1, false)[1]
+                        if string.match(line, "#") then
+                            return
+                        end
+                        handlers["*"](char, item, bufnr, rules, commit_character)
+                    end
+                }
+            },
+        }
+    })
 )
 
 local has_words_before = function()
