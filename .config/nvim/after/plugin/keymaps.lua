@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local Hydra = require('hydra')
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -49,7 +50,7 @@ local function closeBuffer()
     -- check if NvimTree window was open
     local explorerWindow = treeView.get_winnr()
     if explorerWindow == nil then
-        vim.cmd('bdelete! ')
+        vim.cmd('Bdelete! ')
         return
     end
     local wasExplorerOpen = vim.api.nvim_win_is_valid(explorerWindow)
@@ -59,13 +60,13 @@ local function closeBuffer()
     -- TODO: handle modified buffers
     -- local isModified = vim.api.nvim_eval('getbufvar(' .. bufferToDelete .. ', "&mod")')
 
-    if (wasExplorerOpen) then
+    if wasExplorerOpen then
         -- switch to previous buffer (tracked by bufferline)
         bufferline.cycle(-1)
     end
 
     -- delete initially open buffer
-    vim.cmd('bdelete! ' .. bufferToDelete)
+    vim.cmd('Bdelete! ' .. bufferToDelete)
 end
 
 wk.register({
@@ -191,9 +192,39 @@ wk.register({
 
 -- Windows
 wk.register({
-    w = { "<cmd>WhichKey <c-w><cr>", "Window" }
+    w = {
+        w = { "<cmd>WhichKey <c-w><cr>", "Window" },
+        u = { "<C-W>k", "Up" },
+        t = { "<C-W>h", "Left" },
+        e = { "<C-W>l", "Right" },
+        i = { "<C-W>j", "Down" },
+        q = { "<C-W>q", "Quit" },
+        h = { "<cmd>split<cr>", "Split horizontally" },
+        v = { "<cmd>vsplit<cr>", "Split vertically" },
+    }
 }, { prefix = "<leader>" })
 
+Hydra({
+    name = "Window size",
+    config = {
+        color = 'amaranth',
+        -- color = 'teal',
+        -- color = 'pink',
+        invoke_on_body = true,
+        hint = {
+            type = "window",
+        },
+    },
+    mode = "n",
+    body = "<leader>ws",
+    heads = {
+        { "+", "5<C-W>+", { desc = "Increase height" } },
+        { "-", "5<C-W>-", { desc = "Decrease height" } },
+        { ">", "5<C-W>>", { desc = "Increase width" } },
+        { "<", "5<C-W><", { desc = "Decrease width" } },
+        { "=", "<C-W>=", { desc = "Equally heigh and wide" } },
+    },
+})
 
 -- Navigation
 wk.register({

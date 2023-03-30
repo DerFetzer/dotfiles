@@ -1,7 +1,11 @@
 require('bufferline').setup {
     options = {
-        close_command = "bdelete! %d | bnext",
-        right_mouse_command = "bdelete! %d | bnext",
+        close_command = function(bufnum)
+            require('bufdelete').bufdelete(bufnum, true)
+        end,
+        right_mouse_command = function(bufnum)
+            require('bufdelete').bufdelete(bufnum, true)
+        end,
         offsets = {
             {
                 filetype = "NvimTree",

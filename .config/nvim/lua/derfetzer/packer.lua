@@ -85,6 +85,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use 'anuvyklack/hydra.nvim'
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
@@ -102,18 +103,16 @@ return require('packer').startup(function(use)
     }
     use 'simrat39/symbols-outline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    if vim.fn.has("win32") == 0 then
-        use {
-            'rmagatti/auto-session',
-            config = function()
-                require('auto-session').setup {
-                    cwd_change_handling = {
-                        restore_upcoming_session = true,
-                    }
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require('auto-session').setup {
+                cwd_change_handling = {
+                    restore_upcoming_session = true,
                 }
-            end
-        }
-    end
+            }
+        end
+    }
     use {
         'natecraddock/workspaces.nvim',
         config = function()
@@ -142,6 +141,7 @@ return require('packer').startup(function(use)
             require("trouble").setup {}
         end
     }
+    use 'famiu/bufdelete.nvim'
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
