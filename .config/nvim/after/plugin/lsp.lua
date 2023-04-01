@@ -16,24 +16,25 @@ local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     wk.register({
-        ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
-        ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
-        ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
-        ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
-        ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
-        ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
-        ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>", "Find workspace symbols" },
-        ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
-        ['K'] = { vim.lsp.buf.hover, "Hover" },
-        ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
-        ['<leader>sa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
-        ['<leader>sr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
-        ['<leader>sl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-            "List workspace foders" },
-        ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
-        ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
-        ['<leader>f'] = { vim.lsp.buf.format, "Format" },
-    },
+            ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
+            ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+            ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
+            ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
+            ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
+            ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
+            ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>",
+                "Find workspace symbols" },
+            ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
+            ['K'] = { vim.lsp.buf.hover, "Hover" },
+            ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
+            ['<leader>sa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
+            ['<leader>sr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
+            ['<leader>sl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+                "List workspace foders" },
+            ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
+            ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
+            ['<leader>f'] = { vim.lsp.buf.format, "Format" },
+        },
         { buffer = bufnr })
 
     -- Highlight
@@ -154,6 +155,13 @@ require 'lspconfig'.clangd.setup {
     capabilities = capabilities,
 }
 
+require("lspconfig").ruff_lsp.setup {
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        client.server_capabilities.hoverProvider = false
+    end,
+    capabilities = capabilities,
+}
 
 -- Diagnostics
 vim.diagnostic.config {
@@ -161,22 +169,21 @@ vim.diagnostic.config {
 }
 
 -- null-ls
-local pylint_with = {}
+local sources = {
+    require("null-ls").builtins.diagnostics.hadolint,
+    -- require("null-ls").builtins.diagnostics.luacheck,
+    require("null-ls").builtins.diagnostics.selene,
+    require("null-ls").builtins.diagnostics.rstcheck,
+    require("null-ls").builtins.diagnostics.cppcheck,
+    require("null-ls").builtins.formatting.black,
+}
 
 if vim.fn.filereadable("configPyLint.pylintrc") == 1 then
-    pylint_with = {
+    sources[#sources + 1] = require("null-ls").builtins.diagnostics.pylint.with({
         extra_args = { "--rcfile=configPyLint.pylintrc" }
-    }
+    })
 end
 
 require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.diagnostics.pylint.with(pylint_with),
-        require("null-ls").builtins.diagnostics.hadolint,
-        -- require("null-ls").builtins.diagnostics.luacheck,
-        require("null-ls").builtins.diagnostics.selene,
-        require("null-ls").builtins.diagnostics.rstcheck,
-        require("null-ls").builtins.diagnostics.cppcheck,
-        require("null-ls").builtins.formatting.black,
-    },
+    sources = sources,
 })
