@@ -2,8 +2,11 @@
 -- vim.api.nvim_create_autocmd("VimEnter", { command = "NERDTree | wincmd p", group = nd_group })
 
 local lsp_group = vim.api.nvim_create_augroup("LSP", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre",
-    { pattern = { "*.rs", "*.toml", "*.lua" }, callback = vim.lsp.buf.formatting_sync, group = lsp_group })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.rs", "*.toml", "*.lua" },
+    callback = function() vim.lsp.buf.format({ async = false }) end,
+    group = lsp_group
+})
 
 local function manual_folding()
     if vim.fn.getfsize(vim.fn.expand("%")) > 5 * 1024 * 1024 then
