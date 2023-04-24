@@ -5,8 +5,8 @@ local Hydra = require('hydra')
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 wk.register({
     ['<leader>e'] = { vim.diagnostic.open_float, "Diagnostics open" },
-    ['[d'] = { vim.diagnostic.goto_prev, "Diagnostics previous" },
-    [']d'] = { vim.diagnostic.goto_next, "Diagnostics next" },
+    ['<leader>r'] = { vim.diagnostic.goto_prev, "Diagnostics previous" },
+    ['<leader>n'] = { vim.diagnostic.goto_next, "Diagnostics next" },
     ['<leader>E'] = { vim.diagnostic.setloclist, "Diagnostics locations" },
 })
 
@@ -152,16 +152,13 @@ wk.register({
         name = "Crates",
         t = { crates.toggle, "Toggle" },
         r = { crates.reload, "Reload" },
-
         v = { crates.show_versions_popup, "Show versions" },
         f = { crates.show_features_popup, "Show features" },
         d = { crates.show_dependencies_popup, "Show dependencies" },
-
         u = { crates.update_crate, "Update crate" },
         a = { crates.update_all_crates, "Update all crates" },
         U = { crates.upgrade_crate, "Upgrade crate" },
         A = { crates.upgrade_all_crates, "Upgrade all crates" },
-
         H = { crates.open_homepage, "Open homepage" },
         R = { crates.open_repository, "Open repo´" },
         D = { crates.open_documentation, "Open docs" },
@@ -185,6 +182,9 @@ wk.register({
         x = { "<cmd>TroubleToggle<cr>", "Toggle" },
         w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
         d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
+        r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
+        D = { "<cmd>TroubleToggle lsp_definitions<cr>", "Lsp definitions" },
+        t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Lsp type definitions" },
         l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
         q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
     }
@@ -222,7 +222,7 @@ Hydra({
         { "-", "5<C-W>-", { desc = "Decrease height" } },
         { ">", "5<C-W>>", { desc = "Increase width" } },
         { "<", "5<C-W><", { desc = "Decrease width" } },
-        { "=", "<C-W>=", { desc = "Equally heigh and wide" } },
+        { "=", "<C-W>=",  { desc = "Equally high and wide" } },
     },
 })
 
