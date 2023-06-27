@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     use 'mbbill/undotree'
-    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons' }
+    use { 'akinsho/bufferline.nvim', tag = "v4.*", requires = 'kyazdani42/nvim-web-devicons' }
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -155,5 +155,10 @@ return require('packer').startup(function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
     use 'nvim-treesitter/nvim-treesitter-context'
+
+    use {
+        "ktunprasert/gui-font-resize.nvim",
+        config = function() require("gui-font-resize").setup({ default_size = 10 }) end,
+    }
 
 end)
