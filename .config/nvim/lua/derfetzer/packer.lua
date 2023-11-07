@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-dap'
     use { 'mfussenegger/nvim-dap-python', branch = "multi-session" }
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
     use { 'williamboman/mason.nvim' }
     use { 'williamboman/mason-lspconfig.nvim' }
 
@@ -98,7 +99,7 @@ return require('packer').startup(function(use)
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        tag = 'nightly'                     -- optional, updated every week. (see issue #1193)
     }
     use 'mbbill/undotree'
     use { 'akinsho/bufferline.nvim', tag = "v4.*", requires = 'kyazdani42/nvim-web-devicons' }
@@ -167,5 +168,4 @@ return require('packer').startup(function(use)
         "ktunprasert/gui-font-resize.nvim",
         config = function() require("gui-font-resize").setup({ default_size = 10 }) end,
     }
-
 end)
