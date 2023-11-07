@@ -1,0 +1,15 @@
+themes {
+    darcula {
+        fg 180 183 186
+        bg 38 38 39
+        black 25 25 25
+        red 231 73 70
+        green 143 168 103
+        yellow 255 198 107
+        blue 85 148 236
+        magenta 209 148 199
+        cyan 41 153 153
+        white 255 255 255
+        orange 205 120 50
+    }
+}
