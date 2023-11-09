@@ -20,6 +20,12 @@ workspace_switcher.apply_to_config(config, "b", "ALT", function(label)
     })
 end)
 
+
+-- General
+config.scrollback_lines = 1000000
+
+
+-- Appearance
 config.window_decorations = "RESIZE"
 
 config.font = wezterm.font('JetBrains Mono', { weight = 'DemiBold' })
@@ -29,11 +35,25 @@ config.color_scheme = 'Darcula (base16)'
 
 config.scrollback_lines = 1000000
 
+
+-- Socket
 config.unix_domains = {
     {
         name = 'unix',
     },
 }
 config.default_gui_startup_args = { 'connect', 'unix' }
+
+
+-- Links
+
+-- Use the defaults as a base
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
+-- make ticket numbers clickable
+table.insert(config.hyperlink_rules, {
+    regex = [[TTS-\d+]],
+    format = 'https://support.tracetronic.com/browse/$0',
+})
 
 return config
