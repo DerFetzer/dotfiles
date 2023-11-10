@@ -16,30 +16,30 @@ local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     wk.register({
-            ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
-            ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
-            ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
-            ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
-            ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
-            ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
-            ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>",
-                "Find workspace symbols" },
-            ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
-            ['K'] = { vim.lsp.buf.hover, "Hover" },
-            ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
-            ['<leader>sa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
-            ['<leader>sr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
-            ['<leader>sl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-                "List workspace foders" },
-            ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
-            ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
-            ['<leader>f'] = { vim.lsp.buf.format, "Format" },
-        },
+        ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
+        ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
+        ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
+        ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
+        ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
+        ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
+        ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>",
+            "Find workspace symbols" },
+        ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
+        ['K'] = { vim.lsp.buf.hover, "Hover" },
+        ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
+        ['<leader>sa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
+        ['<leader>sr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
+        ['<leader>sl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+            "List workspace foders" },
+        ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
+        ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
+        ['<leader>f'] = { vim.lsp.buf.format, "Format" },
+    },
         { buffer = bufnr })
 
     wk.register({
-            ['<leader>f'] = { vim.lsp.buf.format, "Format" },
-        },
+        ['<leader>f'] = { vim.lsp.buf.format, "Format" },
+    },
         { buffer = bufnr, mode = 'v' })
 
     -- Highlight
@@ -117,6 +117,8 @@ rt.setup({
                     d = { rt.debuggables.debuggables, "Debuggables" },
                     k = { rt.hover_actions.hover_actions, "Hover actions" },
                     c = { rt.code_action_group.code_action_group, "Code action group" },
+                    e = { rt.expand_macro.expand_macro, "Expand macro" },
+                    o = { rt.external_docs.open_external_docs, "Open external docs" },
                 }
             }, { prefix = "<leader>", buffer = buffer })
         end,
