@@ -17,7 +17,7 @@ wk.register({
     t = {
         name = "Telescope",
         t = { "<cmd>Telescope<cr>", "List builtin pickers" },
-        h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden files" },
+        h = { "<cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true<cr>", "Find hidden files" },
         f = { "<cmd>Telescope find_files<cr>", "Find files" },
         g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
         G = {
@@ -222,7 +222,7 @@ Hydra({
         { "-", "5<C-W>-", { desc = "Decrease height" } },
         { ">", "5<C-W>>", { desc = "Increase width" } },
         { "<", "5<C-W><", { desc = "Decrease width" } },
-        { "=", "<C-W>=",  { desc = "Equally high and wide" } },
+        { "=", "<C-W>=", { desc = "Equally high and wide" } },
     },
 })
 
