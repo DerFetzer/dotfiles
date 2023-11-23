@@ -32,7 +32,8 @@ config.window_decorations = "RESIZE"
 config.font = wezterm.font('JetBrains Mono', { weight = 'DemiBold' })
 config.font_size = 9.5
 
-config.color_scheme = 'Darcula (base16)'
+-- config.color_scheme = 'Darcula (base16)'
+config.color_scheme = 'catppuccin-macchiato'
 
 config.scrollback_lines = 1000000
 

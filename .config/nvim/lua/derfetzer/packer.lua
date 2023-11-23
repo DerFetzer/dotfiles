@@ -65,6 +65,7 @@ return require('packer').startup(function(use)
     use "EdenEast/nightfox.nvim"
     use 'folke/tokyonight.nvim'
     use { "ellisonleao/gruvbox.nvim" }
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Other
     use {
@@ -99,7 +100,7 @@ return require('packer').startup(function(use)
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly'                     -- optional, updated every week. (see issue #1193)
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     use 'mbbill/undotree'
     use { 'akinsho/bufferline.nvim', tag = "v4.*", requires = 'kyazdani42/nvim-web-devicons' }
@@ -150,6 +151,11 @@ return require('packer').startup(function(use)
         end
     }
     use 'famiu/bufdelete.nvim'
+    use { "ellisonleao/glow.nvim",
+        config = function()
+            require("glow").setup()
+        end
+    }
 
     -- Telescope
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
