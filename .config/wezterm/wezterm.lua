@@ -12,6 +12,7 @@ end
 
 config.keys = {}
 
+-- Addons
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 workspace_switcher.apply_to_config(config, "b", "ALT", function(label)
@@ -32,10 +33,9 @@ config.window_decorations = "RESIZE"
 config.font = wezterm.font('JetBrains Mono', { weight = 'DemiBold' })
 config.font_size = 9.5
 
--- config.color_scheme = 'Darcula (base16)'
-config.color_scheme = 'catppuccin-macchiato'
+config.color_scheme = 'Catppuccin Macchiato'
 
-config.scrollback_lines = 1000000
+config.use_fancy_tab_bar = false
 
 
 -- Socket
