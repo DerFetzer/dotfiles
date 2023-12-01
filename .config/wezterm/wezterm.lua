@@ -30,13 +30,12 @@ config.scrollback_lines = 1000000
 -- Appearance
 config.window_decorations = "RESIZE"
 
-config.font = wezterm.font('JetBrains Mono', { weight = 'DemiBold' })
+config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
 config.font_size = 9.5
 
 config.color_scheme = 'Catppuccin Macchiato'
 
 config.use_fancy_tab_bar = false
-
 
 -- Socket
 config.unix_domains = {
