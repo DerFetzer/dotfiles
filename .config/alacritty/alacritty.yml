@@ -12,3 +12,4 @@ font:
 
 window:
   startup_mode: maximized
+  decorations: "None"
