@@ -10,18 +10,28 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
-config.keys = {}
-
 -- Addons
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
-workspace_switcher.apply_to_config(config, "b", "ALT", function(label)
+config.keys = {}
+
+workspace_switcher.apply_to_config(config)
+
+workspace_switcher.set_workspace_formatter(function(label)
     return wezterm.format({
         { Attribute = { Intensity = "Bold" } },
         { Text = "󱂬: " .. label },
     })
 end)
 
+-- Keys
+config.keys = {
+    {
+        key = "b",
+        mods = "ALT",
+        action = workspace_switcher.switch_workspace(),
+    }
+}
 
 -- General
 config.scrollback_lines = 1000000
@@ -30,7 +40,7 @@ config.scrollback_lines = 1000000
 -- Appearance
 config.window_decorations = "RESIZE"
 
-config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
+config.font = wezterm.font('JetBrains Mono NF', { weight = 'Regular' })
 config.font_size = 9.5
 
 config.color_scheme = 'Catppuccin Macchiato'
