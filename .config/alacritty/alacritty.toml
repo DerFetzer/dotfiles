@@ -1,0 +1,16 @@
+import = ["~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
+
+[font]
+size = 9.5
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Medium"
+
+[shell]
+args = ["--login"]
+program = "zsh"
+
+[window]
+decorations = "None"
+startup_mode = "maximized"
