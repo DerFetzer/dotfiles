@@ -10,6 +10,12 @@ wk.register({
     ['<leader>E'] = { vim.diagnostic.setloclist, "Diagnostics locations" },
 })
 
+-- Quickfix
+wk.register({
+    ['<leader>R'] = { "<cmd>cp<cr>", "Quickfix previous" },
+    ['<leader>N'] = { "<cmd>cn<cr>", "Quickfix next" },
+})
+
 -- Telescope
 local tele = require("telescope.builtin")
 local tele_utils = require("telescope.utils")
