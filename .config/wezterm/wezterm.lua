@@ -40,8 +40,8 @@ config.scrollback_lines = 1000000
 -- Appearance
 config.window_decorations = "RESIZE"
 
-config.font = wezterm.font('JetBrains Mono', { weight = 'Medium' })
-config.font_size = 9.5
+config.font = wezterm.font('JetBrains Mono', { weight = 'Light' })
+config.font_size = 9
 
 config.color_scheme = 'Catppuccin Macchiato'
 
