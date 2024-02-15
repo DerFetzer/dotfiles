@@ -40,8 +40,10 @@ config.scrollback_lines = 1000000
 -- Appearance
 config.window_decorations = "RESIZE"
 
-config.font = wezterm.font('JetBrains Mono', { weight = 'Light' })
+config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
 config.font_size = 9
+
+config.freetype_load_target = "HorizontalLcd"
 
 config.color_scheme = 'Catppuccin Macchiato'
 
