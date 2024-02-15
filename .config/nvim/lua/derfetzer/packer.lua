@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-cmp'
 
     use {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         requires = { 'nvim-lua/plenary.nvim' }
     }
 

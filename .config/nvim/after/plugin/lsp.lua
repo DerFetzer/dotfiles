@@ -162,6 +162,14 @@ require 'lspconfig'.clangd.setup {
     capabilities = capabilities,
 }
 
+require("lspconfig").ruff_lsp.setup {
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        client.server_capabilities.hoverProvider = false
+    end,
+    capabilities = capabilities,
+}
+
 -- Diagnostics
 vim.diagnostic.config {
     update_in_insert = true,
@@ -170,26 +178,11 @@ vim.diagnostic.config {
 -- null-ls
 local sources = {
     require("null-ls").builtins.diagnostics.hadolint,
-    -- require("null-ls").builtins.diagnostics.luacheck,
     require("null-ls").builtins.diagnostics.selene,
     require("null-ls").builtins.diagnostics.rstcheck,
     require("null-ls").builtins.diagnostics.cppcheck,
     require("null-ls").builtins.formatting.black,
 }
-
-if vim.fn.filereadable("configPyLint.pylintrc") == 1 then
-    sources[#sources + 1] = require("null-ls").builtins.diagnostics.pylint.with({
-        extra_args = { "--rcfile=configPyLint.pylintrc" }
-    })
-else
-    require("lspconfig").ruff_lsp.setup {
-        on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-            client.server_capabilities.hoverProvider = false
-        end,
-        capabilities = capabilities,
-    }
-end
 
 require("null-ls").setup({
     sources = sources,
