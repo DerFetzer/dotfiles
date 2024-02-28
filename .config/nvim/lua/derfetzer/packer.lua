@@ -1,177 +1,178 @@
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
+return {
     -- Rust
-    use 'neovim/nvim-lspconfig'
-    use 'simrat39/rust-tools.nvim'
-    use {
-        'saecki/crates.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
+    "neovim/nvim-lspconfig",
+    "simrat39/rust-tools.nvim",
+    {
+        "saecki/crates.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            require('crates').setup()
+            require("crates").setup()
         end,
-    }
+    },
 
     -- cmp
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/nvim-cmp'
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/nvim-cmp",
 
-    use {
-        'nvimtools/none-ls.nvim',
-        requires = { 'nvim-lua/plenary.nvim' }
-    }
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 
-    -- use 'hrsh7th/cmp-vsnip'
-    -- use 'hrsh7th/vim-vsnip'
-    use 'L3MON4D3/LuaSnip'
-    use "rafamadriz/friendly-snippets"
-    use { 'saadparwaiz1/cmp_luasnip' }
+    -- "hrsh7th/cmp-vsnip",
+    -- "hrsh7th/vim-vsnip",
+    "L3MON4D3/LuaSnip",
+    "rafamadriz/friendly-snippets",
+    "saadparwaiz1/cmp_luasnip",
 
-    use {
+    {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
-    }
+    },
 
     -- Debugging
-    use 'nvim-lua/plenary.nvim'
-    use 'mfussenegger/nvim-dap'
-    use { 'mfussenegger/nvim-dap-python', branch = "multi-session" }
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    "nvim-lua/plenary.nvim",
+    "mfussenegger/nvim-dap",
+    { "mfussenegger/nvim-dap-python", branch = "multi-session" },
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
 
-    use { 'williamboman/mason.nvim' }
-    use { 'williamboman/mason-lspconfig.nvim' }
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
 
     -- Test
-    use {
+    {
         "nvim-neotest/neotest",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim"
-        }
-    }
-    use 'nvim-neotest/neotest-python'
-    use 'rouge8/neotest-rust'
+        },
+    },
+    "nvim-neotest/neotest-python",
+    "rouge8/neotest-rust",
 
     -- Color
-    use 'doums/darcula'
-    use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
-    use "EdenEast/nightfox.nvim"
-    use 'folke/tokyonight.nvim'
-    use { "ellisonleao/gruvbox.nvim" }
-    use { "catppuccin/nvim", as = "catppuccin" }
+    "doums/darcula",
+    { "briones-gabriel/darcula-solid.nvim", dependencies = "rktjmp/lush.nvim" },
+    "EdenEast/nightfox.nvim",
+    "folke/tokyonight.nvim",
+    { "ellisonleao/gruvbox.nvim" },
+    { "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = false,
+        priority = 1000,
+    },
 
     -- Other
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-    use {
-        'lewis6991/gitsigns.nvim',
-        -- tag = 'release' -- To use the latest release
-    }
-    use {
-        'TimUntersberger/neogit',
-        requires = 'nvim-lua/plenary.nvim',
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "kyazdani42/nvim-web-devicons" },
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        -- version = "release" -- To the latest release
+    },
+    {
+        "TimUntersberger/neogit",
+        dependencies = "nvim-lua/plenary.nvim",
         config = function()
-            local neogit = require('neogit')
+            local neogit = require("neogit")
             neogit.setup {}
         end
-    }
-    use {
+    },
+    {
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup {
                 -- your configuration comes here
-                -- or leave it empty to use the default settings
+                -- or leave it empty to the default settings
                 -- refer to the configuration section below
             }
         end
-    }
-    use 'anuvyklack/hydra.nvim'
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    "anuvyklack/hydra.nvim",
+    {
+        "kyazdani42/nvim-tree.lua",
+        dependencies = {
+            "kyazdani42/nvim-web-devicons", -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
-    use 'mbbill/undotree'
-    use { 'akinsho/bufferline.nvim', tag = "v4.*", requires = 'kyazdani42/nvim-web-devicons' }
-    use {
-        'numToStr/Comment.nvim',
+        version = "nightly" -- optional, updated every week. (see issue #1193)
+    },
+    "mbbill/undotree",
+    { "akinsho/bufferline.nvim", version = "v4.*", dependencies = "kyazdani42/nvim-web-devicons" },
+    {
+        "numToStr/Comment.nvim",
         config = function()
-            require('Comment').setup()
+            require("Comment").setup()
         end
-    }
-    use 'simrat39/symbols-outline.nvim'
-    use 'lukas-reineke/indent-blankline.nvim'
-    use {
-        'rmagatti/auto-session',
+    },
+    "simrat39/symbols-outline.nvim",
+    "lukas-reineke/indent-blankline.nvim",
+    {
+        "rmagatti/auto-session",
         config = function()
-            require('auto-session').setup {
+            require("auto-session").setup {
                 cwd_change_handling = {
                     restore_upcoming_session = true,
-                }
+                },
             }
         end
-    }
-    use {
-        'natecraddock/workspaces.nvim',
+    },
+    {
+        "natecraddock/workspaces.nvim",
         config = function()
-            require('workspaces').setup {}
+            require("workspaces").setup {}
         end
-    }
-    use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
-    use 'ggandor/leap.nvim'
-    use({
+    },
+    { "akinsho/toggleterm.nvim", version = "v2.*" },
+    "ggandor/leap.nvim",
+    {
         "kylechui/nvim-surround",
         config = function()
             require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
+                -- Configuration here, or leave empty to defaults
             })
         end
-    })
-    use {
+    },
+    {
         "derfetzer/pytask.nvim",
         config = function() require("pytask").setup() end
-    }
-    use { 'rafcamlet/nvim-luapad', requires = "antoinemadec/FixCursorHold.nvim" }
-    use {
+    },
+    { "rafcamlet/nvim-luapad", dependencies = "antoinemadec/FixCursorHold.nvim" },
+    {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup {}
         end
-    }
-    use 'famiu/bufdelete.nvim'
-    use { "ellisonleao/glow.nvim",
+    },
+    "famiu/bufdelete.nvim",
+    { "ellisonleao/glow.nvim",
         config = function()
             require("glow").setup()
         end
-    }
+    },
 
     -- Telescope
-    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' }, { "nvim-telescope/telescope-live-grep-args.nvim" } } }
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x",
+        dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-live-grep-args.nvim" } } },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
     -- Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    }
-    use 'nvim-treesitter/nvim-treesitter-context'
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
+    },
+    "nvim-treesitter/nvim-treesitter-context",
 
-    use {
+    {
         "ktunprasert/gui-font-resize.nvim",
         config = function() require("gui-font-resize").setup({ default_size = 10 }) end,
-    }
-end)
+    },
+}
