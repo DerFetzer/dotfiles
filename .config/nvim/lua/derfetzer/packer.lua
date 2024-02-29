@@ -43,6 +43,27 @@ return {
 
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = function() require("mason-tool-installer").setup {
+                ensure_installed = {
+                    "black",
+                    "clangd",
+                    "codelldb",
+                    "glow",
+                    "hadolint",
+                    "lua-language-server",
+                    "pyright",
+                    "ruff",
+                    "ruff-lsp",
+                    "rust-analyzer",
+                    "selene",
+                    "stylua",
+                },
+                auto_update = false,
+                run_on_start = true,
+            }
+        end
+    },
 
     -- Test
     {
