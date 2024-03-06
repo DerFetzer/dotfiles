@@ -38,13 +38,15 @@ return {
     -- Debugging
     "nvim-lua/plenary.nvim",
     "mfussenegger/nvim-dap",
-    { "mfussenegger/nvim-dap-python", branch = "multi-session" },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+    { "mfussenegger/nvim-dap-python",     branch = "multi-session" },
+    { "rcarriga/nvim-dap-ui",             dependencies = { "mfussenegger/nvim-dap" } },
 
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-    { "WhoIsSethDaniel/mason-tool-installer.nvim",
-        config = function() require("mason-tool-installer").setup {
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = function()
+            require("mason-tool-installer").setup {
                 ensure_installed = {
                     "black",
                     "clangd",
@@ -83,7 +85,8 @@ return {
     "EdenEast/nightfox.nvim",
     "folke/tokyonight.nvim",
     { "ellisonleao/gruvbox.nvim" },
-    { "catppuccin/nvim",
+    {
+        "catppuccin/nvim",
         name = "catppuccin",
         lazy = false,
         priority = 1000,
@@ -118,11 +121,15 @@ return {
     },
     "anuvyklack/hydra.nvim",
     {
-        "kyazdani42/nvim-tree.lua",
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
         dependencies = {
-            "kyazdani42/nvim-web-devicons", -- optional, for file icons
+            "nvim-tree/nvim-web-devicons",
         },
-        version = "nightly" -- optional, updated every week. (see issue #1193)
+        config = function()
+            require("nvim-tree").setup {}
+        end,
     },
     "mbbill/undotree",
     { "akinsho/bufferline.nvim", version = "v4.*", dependencies = "kyazdani42/nvim-web-devicons" },
@@ -164,7 +171,7 @@ return {
         "derfetzer/pytask.nvim",
         config = function() require("pytask").setup() end
     },
-    { "rafcamlet/nvim-luapad", dependencies = "antoinemadec/FixCursorHold.nvim" },
+    { "rafcamlet/nvim-luapad",                    dependencies = "antoinemadec/FixCursorHold.nvim" },
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
@@ -173,15 +180,19 @@ return {
         end
     },
     "famiu/bufdelete.nvim",
-    { "ellisonleao/glow.nvim",
+    {
+        "ellisonleao/glow.nvim",
         config = function()
             require("glow").setup()
         end
     },
 
     -- Telescope
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x",
-        dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-live-grep-args.nvim" } } },
+    {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-live-grep-args.nvim" } }
+    },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
 
