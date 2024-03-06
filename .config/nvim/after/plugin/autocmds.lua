@@ -25,3 +25,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
     command = "if mode() != 'c' | checktime | endif",
     pattern = { "*" },
 })
+
+-- Kickstarter
+-- https://github.com/nvim-lua/kickstart.nvim/blob/b83b2b061c1fab0e1a3a28c185345be7957e74cd/init.lua
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
