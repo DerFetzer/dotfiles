@@ -1,7 +1,11 @@
 return {
     -- Rust
     "neovim/nvim-lspconfig",
-    "simrat39/rust-tools.nvim",
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        lazy = false,   -- This plugin is already lazy
+    },
     {
         "saecki/crates.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -96,7 +100,7 @@ return {
     -- Other
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -133,13 +137,7 @@ return {
         end,
     },
     "mbbill/undotree",
-    { "akinsho/bufferline.nvim", version = "v4.*", dependencies = "kyazdani42/nvim-web-devicons" },
-    {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end
-    },
+    { "akinsho/bufferline.nvim", version = "v4.*", dependencies = "nvim-tree/nvim-web-devicons" },
     "simrat39/symbols-outline.nvim",
     "lukas-reineke/indent-blankline.nvim",
     {
@@ -175,7 +173,7 @@ return {
     { "rafcamlet/nvim-luapad",                    dependencies = "antoinemadec/FixCursorHold.nvim" },
     {
         "folke/trouble.nvim",
-        dependencies = "kyazdani42/nvim-web-devicons",
+        dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
             require("trouble").setup {}
         end
