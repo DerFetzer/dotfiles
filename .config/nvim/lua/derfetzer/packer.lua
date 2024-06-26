@@ -10,7 +10,7 @@ return {
         "saecki/crates.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("crates").setup()
+            -- Do nothing here since LSP functions cannot be imported at this moment
         end,
     },
 

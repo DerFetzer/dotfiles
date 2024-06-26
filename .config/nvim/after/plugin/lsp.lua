@@ -180,6 +180,16 @@ vim.filetype.add({
     extension = { typ = 'typst' }
 })
 
+require("crates").setup {
+    lsp = {
+        enabled = true,
+        on_attach = on_attach,
+        actions = true,
+        completion = true,
+        hover = true,
+    }
+}
+
 -- Diagnostics
 vim.diagnostic.config {
     update_in_insert = true,
