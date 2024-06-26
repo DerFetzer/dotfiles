@@ -54,6 +54,10 @@ local on_attach = function(client, bufnr)
             desc = "Clear All the References",
         })
     end
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true)
+    end
 end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
