@@ -36,7 +36,8 @@ return {
 
     {
         "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+        event = "InsertEnter",
+        config = true
     },
 
     -- Debugging
@@ -107,22 +108,21 @@ return {
         -- version = "release" -- To the latest release
     },
     {
-        "TimUntersberger/neogit",
-        dependencies = "nvim-lua/plenary.nvim",
-        config = function()
-            local neogit = require("neogit")
-            neogit.setup {}
-        end
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+        },
+        config = true,
     },
     {
         "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to the default settings
-                -- refer to the configuration section below
-            }
-        end
+        event = "VeryLazy",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to the default settings
+            -- refer to the configuration section below
+        }
     },
     "anuvyklack/hydra.nvim",
     {
@@ -137,9 +137,17 @@ return {
         end,
     },
     "mbbill/undotree",
-    { "akinsho/bufferline.nvim", version = "v4.*", dependencies = "nvim-tree/nvim-web-devicons" },
-    "simrat39/symbols-outline.nvim",
-    "lukas-reineke/indent-blankline.nvim",
+    { "akinsho/bufferline.nvim",             version = "v4.*", dependencies = "nvim-tree/nvim-web-devicons" },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+    },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl",     opts = {} },
     {
         "rmagatti/auto-session",
         config = function()
@@ -156,10 +164,12 @@ return {
             require("workspaces").setup {}
         end
     },
-    { "akinsho/toggleterm.nvim", version = "v2.*" },
+    { "akinsho/toggleterm.nvim", version = "v2.*",                                config = true },
     "ggandor/leap.nvim",
     {
         "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
         config = function()
             require("nvim-surround").setup({
                 -- Configuration here, or leave empty to defaults
@@ -170,7 +180,7 @@ return {
         "derfetzer/pytask.nvim",
         config = function() require("pytask").setup() end
     },
-    { "rafcamlet/nvim-luapad",                    dependencies = "antoinemadec/FixCursorHold.nvim" },
+    { "rafcamlet/nvim-luapad", dependencies = "antoinemadec/FixCursorHold.nvim" },
     {
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
@@ -181,9 +191,8 @@ return {
     "famiu/bufdelete.nvim",
     {
         "ellisonleao/glow.nvim",
-        config = function()
-            require("glow").setup()
-        end
+        config = true,
+        cmd = "Glow",
     },
 
     -- Telescope

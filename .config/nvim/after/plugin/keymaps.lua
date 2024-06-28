@@ -139,7 +139,7 @@ wk.register({
         name = "Panels",
         t = { "<cmd>NvimTreeToggle<cr>", "Nvim Tree" },
         f = { "<cmd>NvimTreeFindFile<cr>", "Find file in Nvim Tree" },
-        o = { "<cmd>SymbolsOutline<cr>", "Outline" },
+        o = { "<cmd>AerialToggle!<cr>", "Outline" },
         u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
     }
 }, { prefix = "<leader>" })
@@ -228,7 +228,7 @@ Hydra({
         { "-", "5<C-W>-", { desc = "Decrease height" } },
         { ">", "5<C-W>>", { desc = "Increase width" } },
         { "<", "5<C-W><", { desc = "Decrease width" } },
-        { "=", "<C-W>=", { desc = "Equally high and wide" } },
+        { "=", "<C-W>=",  { desc = "Equally high and wide" } },
     },
 })
 
