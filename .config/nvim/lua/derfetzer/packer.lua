@@ -164,7 +164,13 @@ return {
             require("workspaces").setup {}
         end
     },
-    { "akinsho/toggleterm.nvim", version = "v2.*",                                config = true },
+    {
+        "akinsho/toggleterm.nvim",
+        version = "v2",
+        opts = {
+            shell = "nu"
+        }
+    },
     "ggandor/leap.nvim",
     {
         "kylechui/nvim-surround",
@@ -207,6 +213,10 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            -- NOTE: additional parser
+            { "nushell/tree-sitter-nu" },
+        },
         build = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     },
     "nvim-treesitter/nvim-treesitter-context",

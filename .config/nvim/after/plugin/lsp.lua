@@ -190,6 +190,11 @@ require("crates").setup {
     }
 }
 
+require 'lspconfig'.nushell.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
 -- Diagnostics
 vim.diagnostic.config {
     update_in_insert = true,

@@ -10,6 +10,8 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
+config.default_prog = { 'nu', '-l' }
+
 -- Addons
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
