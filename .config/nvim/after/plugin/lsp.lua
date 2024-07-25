@@ -125,7 +125,7 @@ vim.g.rustaceanvim = {
     }
 }
 
-require 'lspconfig'.pyright.setup {
+require 'lspconfig'.basedpyright.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
