@@ -104,6 +104,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'nvim_lua' },
         { name = "crates" },
+        { name = "nvim_lsp_signature_help" },
     })
 })
 
