@@ -13,6 +13,7 @@ return {
             -- Do nothing here since LSP functions cannot be imported at this moment
         end,
     },
+    "nvim-java/nvim-java",
 
     -- cmp
     "hrsh7th/cmp-nvim-lsp",
@@ -186,7 +187,7 @@ return {
         "derfetzer/pytask.nvim",
         config = function() require("pytask").setup() end
     },
-    { "rafcamlet/nvim-luapad", dependencies = "antoinemadec/FixCursorHold.nvim" },
+    { "rafcamlet/nvim-luapad",                    dependencies = "antoinemadec/FixCursorHold.nvim" },
     {
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
