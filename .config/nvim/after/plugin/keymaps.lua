@@ -3,50 +3,48 @@ local Hydra = require('hydra')
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-wk.register({
-    ['<leader>e'] = { vim.diagnostic.open_float, "Diagnostics open" },
-    ['<leader>r'] = { vim.diagnostic.goto_prev, "Diagnostics previous" },
-    ['<leader>n'] = { vim.diagnostic.goto_next, "Diagnostics next" },
-    ['<leader>E'] = { vim.diagnostic.setloclist, "Diagnostics locations" },
+wk.add({
+    { "<leader>e", vim.diagnostic.open_float, desc = "Diagnostics open" },
+    { "<leader>r", vim.diagnostic.goto_prev,  desc = "Diagnostics previous" },
+    { "<leader>n", vim.diagnostic.goto_next,  desc = "Diagnostics next" },
+    { "<leader>E", vim.diagnostic.setloclist, desc = "Diagnostics locations" },
 })
 
 -- Quickfix
-wk.register({
-    ['<leader>R'] = { "<cmd>cp<cr>", "Quickfix previous" },
-    ['<leader>N'] = { "<cmd>cn<cr>", "Quickfix next" },
+wk.add({
+    { "<leader>R", "<cmd>cp<cr>", desc = "Quickfix previous" },
+    { "<leader>N", "<cmd>cn<cr>", desc = "Quickfix next" },
 })
 
 -- Telescope
 local tele = require("telescope.builtin")
 local tele_utils = require("telescope.utils")
-wk.register({
-    t = {
-        name = "Telescope",
-        t = { "<cmd>Telescope<cr>", "List builtin pickers" },
-        h = { "<cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true<cr>", "Find hidden files" },
-        f = { "<cmd>Telescope find_files<cr>", "Find files" },
-        g = { "<cmd>Telescope live_grep<cr>", "Grep in files" },
-        G = {
-            name = "Git",
-            h = { "<cmd>Telescope git_bcommits<cr>", "Buffer history" },
-            H = { "<cmd>Telescope git_commits<cr>", "History" },
-            b = { "<cmd>Telescope git_branches<cr>", "Branches" },
-        },
-        l = {
-            name = "Grep in files of language",
-            p = { function() tele.live_grep({ glob_pattern = { '*.py', '*.pxi' } }) end, "Python" },
-            r = { function() tele.live_grep({ glob_pattern = { '*.rs', 'Cargo.toml' } }) end, "Rust" },
-            c = { function() tele.live_grep({ glob_pattern = { '*.c', '*.h', '*.cpp', '*.hpp' } }) end, "C/C++" },
-        },
-        b = { "<cmd>Telescope buffers<cr>", "Find open buffers" },
-        r = { "<cmd>Telescope resume<cr>", "Last picker" },
-        o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
-        n = { "<cmd>Telescope grep_string<cr>", "Grep in files for word under cursor" },
-        H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-        w = { "<cmd>Telescope workspaces<cr>", "Workspaces" },
-        d = { function() tele.live_grep({ cwd = tele_utils.buffer_dir() }) end, "Grep in files in buffer folder" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>t",   group = "Telescope" },
+
+    { "<leader>tG",  group = "Git" },
+    { "<leader>tGH", "<cmd>Telescope git_commits<cr>",                                                     desc = "History" },
+    { "<leader>tGb", "<cmd>Telescope git_branches<cr>",                                                    desc = "Branches" },
+    { "<leader>tGh", "<cmd>Telescope git_bcommits<cr>",                                                    desc = "Buffer history" },
+
+    { "<leader>tH",  "<cmd>Telescope help_tags<cr>",                                                       desc = "Help tags" },
+    { "<leader>tb",  "<cmd>Telescope buffers<cr>",                                                         desc = "Find open buffers" },
+    { "<leader>td",  function() tele.live_grep({ cwd = tele_utils.buffer_dir() }) end,                     desc = "Grep in files in buffer folder" },
+    { "<leader>tf",  "<cmd>Telescope find_files<cr>",                                                      desc = "Find files" },
+    { "<leader>tg",  "<cmd>Telescope live_grep<cr>",                                                       desc = "Grep in files" },
+    { "<leader>th",  "<cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true<cr>",     desc = "Find hidden files" },
+
+    { "<leader>tl",  group = "Grep in files of language" },
+    { "<leader>tlc", function() tele.live_grep({ glob_pattern = { '*.c', '*.h', '*.cpp', '*.hpp' } }) end, desc = "C/C++" },
+    { "<leader>tlp", function() tele.live_grep({ glob_pattern = { '*.py', '*.pxi' } }) end,                desc = "Python" },
+    { "<leader>tlr", function() tele.live_grep({ glob_pattern = { '*.rs', 'Cargo.toml' } }) end,           desc = "Rust" },
+
+    { "<leader>tn",  "<cmd>Telescope grep_string<cr>",                                                     desc = "Grep in files for word under cursor" },
+    { "<leader>to",  "<cmd>Telescope oldfiles<cr>",                                                        desc = "Recent files" },
+    { "<leader>tr",  "<cmd>Telescope resume<cr>",                                                          desc = "Last picker" },
+    { "<leader>tt",  "<cmd>Telescope<cr>",                                                                 desc = "List builtin pickers" },
+    { "<leader>tw",  "<cmd>Telescope workspaces<cr>",                                                      desc = "Workspaces" },
+})
 
 -- buffers
 local function closeBuffer()
@@ -75,14 +73,14 @@ local function closeBuffer()
     vim.cmd('Bdelete! ' .. bufferToDelete)
 end
 
-wk.register({
-    q = { closeBuffer, "Close current buffer" },
-    ["<leader>"] = { "<cmd>w<cr>", "Write current buffer" }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader><leader>", "<cmd>w<cr>", desc = "Write current buffer" },
+    { "<leader>q",        closeBuffer,  desc = "Close current buffer" },
+})
 
-wk.register({
-    ['('] = { "<cmd>BufferLineCyclePrev<cr>", "Previous buffer" },
-    [')'] = { "<cmd>BufferLineCycleNext<cr>", "Next buffer" },
+wk.add({
+    { "(", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer" },
+    { ")", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
 })
 
 -- ToggleTerm
@@ -90,125 +88,117 @@ local function termcodes(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-wk.register({
-    ["<esc>"] = { termcodes("<C-\\><C-N>"), "End terminal mode" }
-}, { mode = "t" })
+wk.add({
+    mode = { "t" },
+    { "<esc>", termcodes("<C-\\><C-N>"), desc = "End terminal mode" }
+})
 
 -- Git
 local neogit = require('neogit')
-wk.register({
-    g = {
-        name = "Git",
-        b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
-        B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame current line" },
-        d = { "<cmd>Gitsigns diffthis<cr>", "Diff" },
-        p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview hunk" },
-        h = { "<cmd>Gitsigns next_hunk<cr>", "Next hunk" },
-        H = { "<cmd>Gitsigns previous_hunk<cr>", "Previous hunk" },
-        r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset hunk" },
-        R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset buffer" },
-        n = { neogit.open, "Neogit" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>g",  group = "Git" },
+    { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle blame current line" },
+    { "<leader>gH", "<cmd>Gitsigns previous_hunk<cr>",             desc = "Previous hunk" },
+    { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset buffer" },
+    { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                desc = "Blame line" },
+    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                  desc = "Diff" },
+    { "<leader>gh", "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next hunk" },
+    { "<leader>gn", neogit.open,                                   desc = "Neogit" },
+    { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview hunk" },
+    { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                desc = "Reset hunk" },
+})
 
 -- Debugging
 local dap = require('dap')
 local dapui = require('dapui')
-wk.register({
-    d = {
-        name = "Debugging",
-        b = { dap.toggle_breakpoint, "Toggle breakpoint" },
-        B = { function()
+wk.add({
+    { "<leader>d",  group = "Debugging" },
+    {
+        "<leader>dB",
+        function()
             dap.set_breakpoint(vim.fn.input('Condition: '))
         end,
-            "Set conditional breakpoint" },
-        u = { dapui.toggle, "UI" },
-    }
-}, { prefix = "<leader>" })
+        desc = "Set conditional breakpoint"
+    },
+    { "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
+    { "<leader>du", dapui.toggle,          desc = "UI" },
+})
 
-wk.register({
-    ["<F8>"] = { dap.step_into, "Step into" },
-    ["<F9>"] = { dap.step_over, "Step over" },
-    ["<F10>"] = { dap.continue, "Start/Continue debugging" },
-    ["<S-F8>"] = { dap.step_out, "Step out" },
+wk.add({
+    { "<F8>",   dap.step_into, desc = "Step into" },
+    { "<F9>",   dap.step_over, desc = "Step over" },
+    { "<F10>",  dap.continue,  desc = "Start/Continue debugging" },
+    { "<S-F8>", dap.step_out,  desc = "Step out" },
 })
 
 -- Panels
-wk.register({
-    p = {
-        name = "Panels",
-        t = { "<cmd>NvimTreeToggle<cr>", "Nvim Tree" },
-        f = { "<cmd>NvimTreeFindFile<cr>", "Find file in Nvim Tree" },
-        o = { "<cmd>AerialToggle!<cr>", "Outline" },
-        u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>p",  group = "Panels" },
+    { "<leader>pf", "<cmd>NvimTreeFindFile<cr>", desc = "Find file in Nvim Tree" },
+    { "<leader>po", "<cmd>AerialToggle!<cr>",    desc = "Outline" },
+    { "<leader>pt", "<cmd>NvimTreeToggle<cr>",   desc = "Nvim Tree" },
+    { "<leader>pu", "<cmd>UndotreeToggle<cr>",   desc = "Undotree" },
+})
 
 -- Insert
-wk.register({
-    ["<C-BS>"] = { "<C-W>", "Delete word before cursor" },
-    ["<C-H>"] = { "<C-W>", "Delete word before cursor" },
-}, { mode = "i" })
+wk.add({
+    mode = { "i" },
+    { "<C-BS>", "<C-W>", desc = "Delete word before cursor" },
+    { "<C-H>",  "<C-W>", desc = "Delete word before cursor" },
+})
 
 
 -- Crates
 local crates = require('crates')
-wk.register({
-    C = {
-        name = "Crates",
-        t = { crates.toggle, "Toggle" },
-        r = { crates.reload, "Reload" },
-        v = { crates.show_versions_popup, "Show versions" },
-        f = { crates.show_features_popup, "Show features" },
-        d = { crates.show_dependencies_popup, "Show dependencies" },
-        u = { crates.update_crate, "Update crate" },
-        a = { crates.update_all_crates, "Update all crates" },
-        U = { crates.upgrade_crate, "Upgrade crate" },
-        A = { crates.upgrade_all_crates, "Upgrade all crates" },
-        H = { crates.open_homepage, "Open homepage" },
-        R = { crates.open_repository, "Open repo´" },
-        D = { crates.open_documentation, "Open docs" },
-        C = { crates.open_crates_io, "Open crates.io" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>C",  group = "Crates" },
+    { "<leader>Ct", crates.toggle,                  desc = "Toggle" },
+    { "<leader>Cr", crates.reload,                  desc = "Reload" },
+    { "<leader>Cv", crates.show_versions_popup,     desc = "Show versions" },
+    { "<leader>Cf", crates.show_features_popup,     desc = "Show features" },
+    { "<leader>Cd", crates.show_dependencies_popup, desc = "Show dependencies" },
+    { "<leader>Cu", crates.update_crate,            desc = "Update crate" },
+    { "<leader>Ca", crates.update_all_crates,       desc = "Update all crates" },
+    { "<leader>CU", crates.upgrade_crate,           desc = "Upgrade crate" },
+    { "<leader>CA", crates.upgrade_all_crates,      desc = "Upgrade all crates" },
+    { "<leader>CH", crates.open_homepage,           desc = "Open homepage" },
+    { "<leader>CR", crates.open_repository,         desc = "Open repo´" },
+    { "<leader>CD", crates.open_documentation,      desc = "Open docs" },
+    { "<leader>CC", crates.open_crates_io,          desc = "Open crates.io" },
+})
 
-wk.register({
-    C = {
-        name = "Crates",
-        u = { crates.update_crates, "Update crates" },
-        U = { crates.upgrade_crates, "Upgrade crates" },
-    }
-}, { prefix = "<leader>", mode = "v" })
+wk.add({
+    mode = { "v" },
+    { "<leader>C>", group = "Crates" },
+    { "<leader>Cu", crates.update_crates,  desc = "Update crates" },
+    { "<leader>CU", crates.upgrade_crates, desc = "Upgrade crates" },
+})
 
 
 -- Trouble
-wk.register({
-    x = {
-        name = "Trouble",
-        x = { "<cmd>TroubleToggle<cr>", "Toggle" },
-        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
-        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
-        r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP references" },
-        D = { "<cmd>TroubleToggle lsp_definitions<cr>", "Lsp definitions" },
-        t = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Lsp type definitions" },
-        l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>x",  group = "Trouble" },
+    { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Toggle" },
+    { "<leader>xD", "<cmd>TroubleToggle lsp_definitions<cr>",       desc = "Lsp definitions" },
+    { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document" },
+    { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "Loclist" },
+    { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix" },
+    { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",        desc = "LSP references" },
+    { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>",  desc = "Lsp type definitions" },
+    { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace" },
+})
 
 -- Windows
-wk.register({
-    w = {
-        w = { "<cmd>WhichKey <c-w><cr>", "Window" },
-        u = { "<C-W>k", "Up" },
-        t = { "<C-W>h", "Left" },
-        e = { "<C-W>l", "Right" },
-        i = { "<C-W>j", "Down" },
-        q = { "<C-W>q", "Quit" },
-        h = { "<cmd>split<cr>", "Split horizontally" },
-        v = { "<cmd>vsplit<cr>", "Split vertically" },
-    }
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>ww", "<cmd>WhichKey <c-w><cr>", desc = "Window" },
+    { "<leader>wq", "<C-W>q",                  desc = "Quit" },
+    { "<leader>wi", "<C-W>j",                  desc = "Down" },
+    { "<leader>wt", "<C-W>h",                  desc = "Left" },
+    { "<leader>we", "<C-W>l",                  desc = "Right" },
+    { "<leader>wu", "<C-W>k",                  desc = "Up" },
+    { "<leader>wv", "<cmd>vsplit<cr>",         desc = "Split vertically" },
+    { "<leader>wh", "<cmd>split<cr>",          desc = "Split horizontally" },
+})
 
 Hydra({
     name = "Window size",
@@ -233,7 +223,7 @@ Hydra({
 })
 
 -- Navigation
-wk.register({
-    ["<C-D>"] = { "<C-D>zz", "Down" },
-    ["<C-U>"] = { "<C-U>zz", "Up" },
+wk.add({
+    { "<C-D>", "<C-D>zz", desc = "Down" },
+    { "<C-U>", "<C-U>zz", desc = "Up" },
 })

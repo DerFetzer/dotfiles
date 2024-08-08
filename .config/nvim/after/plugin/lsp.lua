@@ -12,34 +12,41 @@ require("java").setup()
 local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    wk.register({
-            ['gD'] = { vim.lsp.buf.declaration, "Go to declaration" },
-            ['gd'] = { "<cmd>Telescope lsp_definitions<cr>", "Go to definition" },
-            ['gr'] = { "<cmd>Telescope lsp_references<cr>", "Show references" },
-            ['gR'] = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble references" },
-            ['gi'] = { "<cmd>Telescope lsp_implementations<cr>", "Go to implementation" },
-            ['gt'] = { "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition" },
-            ['ts'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>",
-                "Find workspace symbols" },
-            ['td'] = { "<cmd>Telescope lsp_document_symbols<cr>", "Find document symbols" },
-            ['K'] = { vim.lsp.buf.hover, "Hover" },
-            ['<C-k>'] = { vim.lsp.buf.signature_help, "Show signature" },
-            ['<leader>sa'] = { vim.lsp.buf.add_workspace_folder, "Add workspace folder" },
-            ['<leader>sr'] = { vim.lsp.buf.remove_workspace_folder, "Remove workspace following" },
-            ['<leader>sl'] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-                "List workspace foders" },
-            ['<leader>cr'] = { vim.lsp.buf.rename, "Rename" },
-            ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
-            ['<leader>f'] = { vim.lsp.buf.format, "Format" },
+    wk.add({
+        buffer = bufnr,
+        { "gD", vim.lsp.buf.declaration,                   desc = "Go to declaration" },
+        { "gd", "<cmd>Telescope lsp_definitions<cr>",      desc = "Go to definition" },
+        { "gr", "<cmd>Telescope lsp_references<cr>",       desc = "Show references" },
+        { "gR", "<cmd>TroubleToggle lsp_references<cr>",   desc = "Trouble references" },
+        { "gi", "<cmd>Telescope lsp_implementations<cr>",  desc = "Go to implementation" },
+        { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Go to type definition" },
+        {
+            "ts",
+            "<cmd>Telescope lsp_dynamic_workspace_symbols ignore_symbols=variable<cr>",
+            desc = "Find workspace symbols"
         },
-        { buffer = bufnr })
-
-    wk.register({
-            ['<leader>f'] = { vim.lsp.buf.format, "Format" },
-            ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
+        { "td",         "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find document symbols" },
+        { "K",          vim.lsp.buf.hover,                         desc = "Hover" },
+        { "<C-k>",      vim.lsp.buf.signature_help,                desc = "Show signature" },
+        { "<leader>sa", vim.lsp.buf.add_workspace_folder,          desc = "Add workspace folder" },
+        { "<leader>sr", vim.lsp.buf.remove_workspace_folder,       desc = "Remove workspace following" },
+        {
+            "<leader>sl",
+            function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+            desc = "List workspace foders"
         },
-        { buffer = bufnr, mode = 'v' })
+        { "<leader>cr", vim.lsp.buf.rename,      desc = "Rename" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
+        { "<leader>f",  vim.lsp.buf.format,      desc = "Format" },
+    }
+    )
 
+    wk.add({
+        buffer = bufnr,
+        mode = { "v" },
+        { "<leader>f",  vim.lsp.buf.format,      desc = "Format" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
+    })
     -- Highlight
     if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
@@ -109,20 +116,19 @@ vim.g.rustaceanvim = {
         capabilities = capabilities,
         on_attach = function(client, buffer)
             on_attach(client, buffer)
-            wk.register({
-                r = {
-                    name = "Rust",
-                    r = { function() vim.cmd.RustLsp("runnables") end, "Runnables" },
-                    d = { function() vim.cmd.RustLsp("debuggables") end, "Debuggables" },
-                    t = { function() vim.cmd.RustLsp("testables") end, "Testables" },
-                    k = { function() vim.cmd.RustLsp("hover", "actions") end, "Hover actions" },
-                    c = { function() vim.cmd.RustLsp("codeActios") end, "Code action group" },
-                    e = { function() vim.cmd.RustLsp("expandMacro") end, "Expand macro" },
-                    E = { function() vim.cmd.RustLsp("explainError") end, "Explain Error" },
-                    R = { function() vim.cmd.RustLsp("renderDiagnostics") end, "Render diagnostics" },
-                    o = { function() vim.cmd.RustLsp("openDocs") end, "Open external docs" },
-                }
-            }, { prefix = "<leader>", buffer = buffer })
+            wk.add({
+                buffer = buffer,
+                { "<leader>r", group = "Rust" },
+                { "<leader>r", function() vim.cmd.RustLsp("runnables") end,         desc = "Runnables" },
+                { "<leader>d", function() vim.cmd.RustLsp("debuggables") end,       desc = "Debuggables" },
+                { "<leader>t", function() vim.cmd.RustLsp("testables") end,         desc = "Testables" },
+                { "<leader>k", function() vim.cmd.RustLsp("hover", "actions") end,  desc = "Hover actions" },
+                { "<leader>c", function() vim.cmd.RustLsp("codeActios") end,        desc = "Code action group" },
+                { "<leader>e", function() vim.cmd.RustLsp("expandMacro") end,       desc = "Expand macro" },
+                { "<leader>E", function() vim.cmd.RustLsp("explainError") end,      desc = "Explain Error" },
+                { "<leader>R", function() vim.cmd.RustLsp("renderDiagnostics") end, desc = "Render diagnostics" },
+                { "<leader>o", function() vim.cmd.RustLsp("openDocs") end,          desc = "Open external docs" },
+            })
         end,
         settings = settings
     }
@@ -134,29 +140,32 @@ require 'lspconfig'.basedpyright.setup {
 }
 
 require 'lspconfig'.lua_ls.setup {
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = function(client)
+        local path = client.workspace_folders[1].name
+        if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+            return
+        end
 
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT'
+            },
+            -- Make the server aware of Neovim runtime files
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME
+                }
+            }
+        })
+    end,
+    settings = {
+        Lua = {}
+    }
 }
 
 require 'lspconfig'.clangd.setup {
