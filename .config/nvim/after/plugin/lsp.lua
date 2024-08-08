@@ -36,6 +36,7 @@ local on_attach = function(client, bufnr)
 
     wk.register({
             ['<leader>f'] = { vim.lsp.buf.format, "Format" },
+            ['<leader>ca'] = { vim.lsp.buf.code_action, "Code action" },
         },
         { buffer = bufnr, mode = 'v' })
 
