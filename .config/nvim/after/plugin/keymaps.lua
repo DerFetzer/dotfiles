@@ -1,5 +1,6 @@
 local wk = require("which-key")
 local Hydra = require('hydra')
+local harpoon = require("harpoon")
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -226,4 +227,16 @@ Hydra({
 wk.add({
     { "<C-D>", "<C-D>zz", desc = "Down" },
     { "<C-U>", "<C-U>zz", desc = "Up" },
+})
+
+-- Harpoon
+harpoon:setup()
+wk.add({
+    { "<leader>h",  group = "Harpoon" },
+    { "<leader>ha", function() harpoon:list():add() end,                         desc = "Add to list" },
+    { "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Toggle quick menu" },
+    { "<leader>he", function() harpoon:list():select(1) end,                     desc = "Select 1" },
+    { "<leader>hi", function() harpoon:list():select(2) end,                     desc = "Select 2" },
+    { "<leader>ht", function() harpoon:list():select(3) end,                     desc = "Select 3" },
+    { "<leader>hc", function() harpoon:list():select(4) end,                     desc = "Select 4" },
 })

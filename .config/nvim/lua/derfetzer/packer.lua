@@ -172,6 +172,11 @@ return {
             shell = "nu"
         }
     },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
     "ggandor/leap.nvim",
     {
         "kylechui/nvim-surround",
