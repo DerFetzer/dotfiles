@@ -1,0 +1,3 @@
+sync_address = "https://atuin.matthias-fetzer.de"
+sync_frequency = "1m"
+enter_accept = "true"
