@@ -676,6 +676,7 @@ $env.config = {
     ]
 }
 
+do { pueue clean | ignore } # Workaround for https://github.com/Nukesor/pueue/issues/541
 let pueue_status = do { pueue status } | complete
 if $pueue_status.exit_code != 0 {
     do { pueued -d }
