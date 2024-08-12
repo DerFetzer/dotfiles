@@ -11,6 +11,10 @@ def is-in-zellij [] {
     "ZELLIJ" in $env
 }
 
+def is-in-wezterm [] {
+    "WEZTERM_EXECUTABLE" in $env
+}
+
 # https://github.com/nushell/nushell/issues/247#issuecomment-2209629106
 def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
@@ -25,6 +29,6 @@ if $pueue_status.exit_code != 0 {
 source atuin_init.nu
 
 # Zellij
-if (is-linux) and not (is-in-nvim) and not (is-in-zellij) {
+if (is-linux) and not ((is-in-nvim) or (is-in-zellij) or (is-in-wezterm)) {
     exec zellij
 }
