@@ -1,3 +1,6 @@
 sync_address = "https://atuin.matthias-fetzer.de"
 sync_frequency = "1m"
-enter_accept = "true"
+enter_accept = "false" # nushell does not support true here so make false the default for all shells
+
+[sync]
+records = true
