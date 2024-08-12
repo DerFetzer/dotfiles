@@ -8,8 +8,8 @@ family = "JetBrains Mono"
 style = "Medium"
 
 [shell]
-args = ["--login"]
-program = "zsh"
+args = ["-l"]
+program = "nu"
 
 [window]
 decorations = "None"
