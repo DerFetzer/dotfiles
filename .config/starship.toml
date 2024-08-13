@@ -4,7 +4,7 @@ palette = "catppuccin_macchiato"
 [directory]
 truncation_length = 4
 # Catppuccin 'lavender'
-style = "bold lavender"
+style = "bold green"
 
 [git_commit]
 only_detached = false
