@@ -6,6 +6,9 @@ truncation_length = 4
 # Catppuccin 'lavender'
 style = "bold lavender"
 
+[git_commit]
+only_detached = false
+
 # palette tables should be last in the config ⚓️
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
