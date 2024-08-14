@@ -15,6 +15,14 @@ def is-in-wezterm [] {
     "WEZTERM_EXECUTABLE" in $env
 }
 
+def git-log [limit: int = 50] {
+    git log --pretty=%h»¦«%s»¦«%aN»¦«%aE»¦«%aD -n ($limit) |
+        lines |
+        split column "»¦«" commit subject name email date |
+        upsert date {|d| $d.date | into datetime} |
+        sort-by date | reverse
+}
+
 # https://github.com/nushell/nushell/issues/247#issuecomment-2209629106
 def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
