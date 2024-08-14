@@ -15,7 +15,7 @@ def is-in-wezterm [] {
     "WEZTERM_EXECUTABLE" in $env
 }
 
-def git-log [limit: int = 50] {
+def git-log [--limit: int = 50] {
     git log --pretty=%h»¦«%s»¦«%aN»¦«%aE»¦«%aD -n ($limit) |
         lines |
         split column "»¦«" commit subject name email date |
