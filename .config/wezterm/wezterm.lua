@@ -38,18 +38,23 @@ config.keys = {
 -- General
 config.scrollback_lines = 1000000
 
-
 -- Appearance
 config.window_decorations = "RESIZE"
 
 config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
-config.font_size = 9
+config.font_size = 9.5
 
 config.freetype_load_target = "HorizontalLcd"
 
 config.color_scheme = 'Catppuccin Macchiato'
 
 config.use_fancy_tab_bar = false
+
+-- SSH
+config.mux_env_remove = {
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+}
 
 -- Socket
 config.unix_domains = {
