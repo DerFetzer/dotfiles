@@ -27,7 +27,70 @@ workspace_switcher.set_workspace_formatter(function(label)
 end)
 
 -- Keys
+config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
+    {
+        key = 'v',
+        mods = 'LEADER',
+        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+    },
+    {
+        key = 'h',
+        mods = 'LEADER',
+        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    },
+    {
+        key = 's',
+        mods = 'LEADER',
+        action = wezterm.action.SpawnTab 'CurrentPaneDomain',
+    },
+    {
+        key = 't',
+        mods = 'LEADER',
+        action = wezterm.action.ActivatePaneDirection 'Left',
+    },
+    {
+        key = 'e',
+        mods = 'LEADER',
+        action = wezterm.action.ActivatePaneDirection 'Right',
+    },
+    {
+        key = 'u',
+        mods = 'LEADER',
+        action = wezterm.action.ActivatePaneDirection 'Up',
+    },
+    {
+        key = 'i',
+        mods = 'LEADER',
+        action = wezterm.action.ActivatePaneDirection 'Down',
+    },
+    {
+        key = 'n',
+        mods = 'LEADER',
+        action = wezterm.action.ActivateTabRelative(-1)
+    },
+    {
+        key = 'r',
+        mods = 'LEADER',
+        action = wezterm.action.ActivateTabRelative(1)
+    },
+    {
+        key = 'l',
+        mods = 'LEADER',
+        action = wezterm.action.ShowLauncher
+    },
+    {
+        key = 'g',
+        mods = 'LEADER',
+        action = wezterm.action.PromptInputLine {
+            description = 'Enter new name for tab',
+            action = wezterm.action_callback(function(window, pane, line)
+                if line then
+                    window:active_tab():set_title(line)
+                end
+            end),
+        },
+    },
     {
         key = "b",
         mods = "ALT",
@@ -49,6 +112,7 @@ config.freetype_load_target = "HorizontalLcd"
 config.color_scheme = 'Catppuccin Macchiato'
 
 config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 
 -- SSH
 config.mux_env_remove = {
