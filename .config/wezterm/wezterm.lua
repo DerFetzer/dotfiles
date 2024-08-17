@@ -40,7 +40,7 @@ config.keys = {
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
-        key = 's',
+        key = 'c',
         mods = 'LEADER',
         action = wezterm.action.SpawnTab 'CurrentPaneDomain',
     },
