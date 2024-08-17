@@ -92,6 +92,16 @@ config.keys = {
         },
     },
     {
+        key = 'x',
+        mods = 'LEADER',
+        action = wezterm.action.ActivateCopyMode
+    },
+    {
+        key = 'q',
+        mods = 'LEADER',
+        action = wezterm.action.QuickSelect
+    },
+    {
         key = "b",
         mods = "ALT",
         action = workspace_switcher.switch_workspace(),
@@ -135,9 +145,15 @@ config.default_gui_startup_args = { 'connect', 'unix' }
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 -- make ticket numbers clickable
+local ticket_re = [[TTS?-\d+]]
 table.insert(config.hyperlink_rules, {
-    regex = [[TTS-\d+]],
+    regex = ticket_re,
     format = 'https://support.tracetronic.com/browse/$0',
 })
+
+-- QuickSelect
+config.quick_select_patterns = {
+    ticket_re,
+}
 
 return config
