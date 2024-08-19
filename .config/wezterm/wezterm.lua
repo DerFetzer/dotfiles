@@ -122,7 +122,6 @@ config.freetype_load_target = "HorizontalLcd"
 config.color_scheme = 'Catppuccin Macchiato'
 
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
 
 -- SSH
 config.mux_env_remove = {
