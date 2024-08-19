@@ -1,5 +1,5 @@
 def is-linux [] {
-    let $os_version = sys host | get "name" | str downcase
+    let os_version = sys host | get "name" | str downcase
     "linux" in $os_version
 }
 
@@ -16,38 +16,46 @@ def is-in-wezterm [] {
 }
 
 def git-log [--limit: int = 50] {
-    git log --pretty=%h»¦«%s»¦«%aN»¦«%aE»¦«%aD -n ($limit) |
-        lines |
-        split column "»¦«" commit subject name email date |
-        upsert date {|d| $d.date | into datetime} |
-        sort-by date | reverse
+    git log --pretty=%h»¦«%s»¦«%aN»¦«%aE»¦«%aD -n ($limit)
+        | lines
+        | split column "»¦«" commit subject name email date
+        | upsert date {|d| $d.date | into datetime}
+        | sort-by date | reverse
 }
 
 def process-et-log [file: path] {
-    let $log_lines = open $file | lines
-    mut $log_records = []
-    mut $current_record: any = null
-    let $newline = "\n"
+    let log_lines = open $file | lines
+    mut log_records = []
+    mut current_record: any = null
+    let newline = "\n"
 
     for $line in $log_lines {
-        let $line = ($line | str trim)
-        let $date = try {
+        let line = ($line | str trim)
+        let date = try {
             $line | split column " " | get 0.column1 | into datetime
         }
         if $date != null {
             if current_record != null {
                 $log_records = ($log_records | append $current_record)
             }
-            let $log_info = ($line | parse "{date} {time} {thread_id} {location} {level}:")
-            let $log_time = ($"($log_info.0.date) ($log_info.0.time)" | into datetime)
-            let $log_info = (
+            let log_info = $line | parse "{date} {time} {thread_id} {location} {level}:"
+            let log_time = $"($log_info.0.date) ($log_info.0.time)" | into datetime
+            let log_info = (
                 $log_info
-                | insert timestamp {|row| ($"($row.date) ($row.time)" | into datetime)}
-                | move timestamp --before date
+                    | insert timestamp {|row| ($"($row.date) ($row.time)" | into datetime)}
+                    | move timestamp --before date
             )
             $current_record = ($log_info | insert log "")
         } else if $current_record != null {
-            $current_record = ($current_record | update log {|r| $r.log | append $line | str join $newline | str trim})
+            $current_record = (
+                $current_record
+                    | update log {
+                        |r| $r.log
+                            | append $line
+                            | str join $newline
+                            | str trim
+                    }
+            )
         }
     }
     $log_records
@@ -58,7 +66,7 @@ def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
 }
 
-do { pueue clean | ignore } # Workaround for https://github.com/Nukesor/pueue/issues/541
+do { pueue clean | complete } # Workaround for https://github.com/Nukesor/pueue/issues/541
 let pueue_status = do { pueue status } | complete
 if $pueue_status.exit_code != 0 {
     do { pueued -d }
