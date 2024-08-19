@@ -1,6 +1,7 @@
 sync_address = "https://atuin.matthias-fetzer.de"
 sync_frequency = "1m"
 enter_accept = "false" # nushell does not support true here so make false the default for all shells
+filter_mode_shell_up_key_binding = "directory"
 
 [sync]
 records = true
