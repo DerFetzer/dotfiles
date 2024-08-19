@@ -29,6 +29,12 @@ end)
 -- Keys
 config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
+    -- Send CTRL-Space when pressing it twice
+    {
+        key = 'Space',
+        mods = 'LEADER | CTRL',
+        action = wezterm.action.SendKey { key = 'Space', mods = 'CTRL' },
+    },
     {
         key = 'v',
         mods = 'LEADER',
