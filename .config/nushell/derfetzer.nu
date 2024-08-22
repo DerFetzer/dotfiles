@@ -32,7 +32,7 @@ def process-et-log [file: path] {
     for $line in $log_lines {
         let line = ($line | str trim)
         let date = try {
-            $line | split column " " | get 0.column1 | into datetime
+            $line | split row " " | first | into datetime
         }
         if $date != null {
             if current_record != null {
