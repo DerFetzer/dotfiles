@@ -27,7 +27,6 @@ def process-et-log [file: path] {
     let log_lines = open $file | lines
     mut log_records = []
     mut current_record: any = null
-    let newline = "\n"
 
     for $line in $log_lines {
         let line = ($line | str trim)
@@ -52,7 +51,7 @@ def process-et-log [file: path] {
                     | update log {
                         |r| $r.log
                             | append $line
-                            | str join $newline
+                            | str join "\n"
                             | str trim
                     }
             )
