@@ -60,6 +60,18 @@ def process-et-log [file: path] {
     $log_records
 }
 
+def flac-to-mp3-recursive [] {
+    let flacs = glob **/*.flac
+    let mp3s = glob **/*.mp3
+    ($flacs 
+        | path parse
+        | filter {|f| $in | update extension "mp3" | path join | $in not-in $mp3s}
+        | sort
+        | par-each -t 8 {|in| run-external "ffmpeg" "-i" $"($in | path join)" "-codec:a" "libmp3lame" "-qscale:a" "2" $"($in | update extension "mp3" | path join)"}
+        | ignore
+    )
+}
+
 # https://github.com/nushell/nushell/issues/247#issuecomment-2209629106
 def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
