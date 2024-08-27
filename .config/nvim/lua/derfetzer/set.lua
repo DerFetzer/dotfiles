@@ -48,6 +48,9 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd "set sessionoptions+=globals"
 vim.cmd "set title"
 
+-- Workaround for https://github.com/wez/wezterm/issues/4607
+vim.cmd "set notermsync"
+
 -- Leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
