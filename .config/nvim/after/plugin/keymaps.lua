@@ -242,25 +242,25 @@ wk.add({
 })
 
 -- Python
-local function put_python_eval()
-    vim.ui.input({ prompt = "Evaluate python code: " }, function(res)
-        if res == nil then
-            return
-        end
+local function insert_python_eval(mode)
+    return function()
+        local cmd = ""
+        vim.ui.input({ prompt = "Evaluate python code: " }, function(res)
+            if res == nil or res == "" then
+                return
+            end
 
-        local eval_res = vim.fn.py3eval(res)
-        vim.print(vim.inspect(eval_res))
-        local eval_res_type = vim.fn.type(eval_res)
-        if eval_res_type == vim.v.t_float or eval_res_type == vim.v.t_number then
-            eval_res = { tostring(eval_res) }
-        elseif eval_res_type == vim.v.t_string then
-            eval_res = { eval_res }
-        end
-        vim.api.nvim_put(eval_res, "", true, true)
-    end)
+            if mode == "n" then
+                cmd = "\"=pyeval('" .. res .. "')<cr>p"
+            elseif mode == "i" then
+                cmd = "<C-R>=pyeval('" .. res .. "')<cr>"
+            end
+        end)
+        return cmd
+    end
 end
 
 wk.add({
-    { "<leader>P", put_python_eval, desc = "Evaluate python" },
-    { "<C-P>",     put_python_eval, desc = "Evaluate python", mode = "i" }
+    { "<leader>P", insert_python_eval("n"), desc = "Evaluate python", expr = true },
+    { "<C-P>",     insert_python_eval("i"), desc = "Evaluate python", mode = "i", expr = true }
 })
