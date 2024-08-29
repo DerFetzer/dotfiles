@@ -38,4 +38,7 @@ $env.NU_LIB_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
+$env.EDITOR = "nvim"
+$env.VISUAL = "nvim"
+
 source ($nu.default-config-dir | path join 'starship.nu')

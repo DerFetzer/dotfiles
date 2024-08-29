@@ -109,7 +109,7 @@ $env.config = {
     }
 
     rm: {
-        always_trash: false # always act as if -t was given. Can be overridden with -p
+        always_trash: true # always act as if -t was given. Can be overridden with -p
     }
 
     # datetime_format determines what a datetime rendered in the shell would look like.
@@ -144,10 +144,10 @@ $env.config = {
     use_grid_icons: true
     footer_mode: "25" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
-    buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+    buffer_editor: "nvim" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
     bracketed_paste: true # enable bracketed paste, currently useless on windows
     edit_mode: emacs # emacs, vi
-    highlight_resolved_externals: false # true enables highlighting of external commands in the repl resolved by which.
+    highlight_resolved_externals: true # true enables highlighting of external commands in the repl resolved by which.
 
     plugins: {} # Per-plugin configuration. See https://www.nushell.sh/contributor-book/plugins.html#configuration.
 
