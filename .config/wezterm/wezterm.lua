@@ -19,12 +19,12 @@ config.keys = {}
 
 workspace_switcher.apply_to_config(config)
 
-workspace_switcher.set_workspace_formatter(function(label)
+workspace_switcher.workspace_formatter = function(label)
     return wezterm.format({
         { Attribute = { Intensity = "Bold" } },
         { Text = "󱂬: " .. label },
     })
-end)
+end
 
 -- Keys
 config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
