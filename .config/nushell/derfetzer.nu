@@ -72,6 +72,31 @@ def flac-to-mp3-recursive [] {
     )
 }
 
+def create-cold-archives [target: path] {
+    let files = ls | get "name"
+    print "input passphrase:"
+    let passphrase = (input -s)
+    mkdir $target
+    for $file in $files {
+        print "process " $file "..."
+        let gpgtar_file = [($target | path join ($file | path basename)), ".gpgtar"] | str join
+        run-external "gpgtar" "-c" "--symmetric" "--no-compress" "-o" $gpgtar_file (["--gpg-args=--cipher-algo AES256 --pinentry-mode loopback --passphrase=", $passphrase] | str join) $file
+        run-external "par2" "c" "-n1" "-r5" $gpgtar_file
+    }
+}
+
+def restore-cold-archives [target: path] {
+    let gpgtar_files = ls *.gpgtar | get "name"
+    print "input passphrase:"
+    let passphrase = (input -s)
+    mkdir $target
+    for $gpgtar_file in $gpgtar_files {
+        print "process " $gpgtar_file "..."
+        run-external "par2" "r" ([$gpgtar_file, ".par2"] | str join)
+        run-external "gpgtar" "-d" "-C" $target (["--gpg-args=--pinentry-mode loopback --passphrase=", $passphrase] | str join) $gpgtar_file
+    }
+}
+
 # https://github.com/nushell/nushell/issues/247#issuecomment-2209629106
 def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
