@@ -118,16 +118,16 @@ vim.g.rustaceanvim = {
             on_attach(client, buffer)
             wk.add({
                 buffer = buffer,
-                { "<leader>r", group = "Rust" },
-                { "<leader>r", function() vim.cmd.RustLsp("runnables") end,         desc = "Runnables" },
-                { "<leader>d", function() vim.cmd.RustLsp("debuggables") end,       desc = "Debuggables" },
-                { "<leader>t", function() vim.cmd.RustLsp("testables") end,         desc = "Testables" },
-                { "<leader>k", function() vim.cmd.RustLsp("hover", "actions") end,  desc = "Hover actions" },
-                { "<leader>c", function() vim.cmd.RustLsp("codeActios") end,        desc = "Code action group" },
-                { "<leader>e", function() vim.cmd.RustLsp("expandMacro") end,       desc = "Expand macro" },
-                { "<leader>E", function() vim.cmd.RustLsp("explainError") end,      desc = "Explain Error" },
-                { "<leader>R", function() vim.cmd.RustLsp("renderDiagnostics") end, desc = "Render diagnostics" },
-                { "<leader>o", function() vim.cmd.RustLsp("openDocs") end,          desc = "Open external docs" },
+                { "<leader>r",  group = "Rust" },
+                { "<leader>rr", function() vim.cmd.RustLsp("runnables") end,         desc = "Runnables" },
+                { "<leader>rd", function() vim.cmd.RustLsp("debuggables") end,       desc = "Debuggables" },
+                { "<leader>rt", function() vim.cmd.RustLsp("testables") end,         desc = "Testables" },
+                { "<leader>rk", function() vim.cmd.RustLsp("hover", "actions") end,  desc = "Hover actions" },
+                { "<leader>rc", function() vim.cmd.RustLsp("codeActios") end,        desc = "Code action group" },
+                { "<leader>re", function() vim.cmd.RustLsp("expandMacro") end,       desc = "Expand macro" },
+                { "<leader>rE", function() vim.cmd.RustLsp("explainError") end,      desc = "Explain Error" },
+                { "<leader>rR", function() vim.cmd.RustLsp("renderDiagnostics") end, desc = "Render diagnostics" },
+                { "<leader>ro", function() vim.cmd.RustLsp("openDocs") end,          desc = "Open external docs" },
             })
         end,
         settings = settings
