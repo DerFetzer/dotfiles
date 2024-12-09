@@ -37,7 +37,9 @@ $env.NU_LIB_DIRS = [
 
 use std "path add"
 
-path add ($env.home | path join ".cargo" "bin")
+try {
+    path add ($env.home | path join ".cargo" "bin")
+}
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
