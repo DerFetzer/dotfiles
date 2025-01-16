@@ -110,8 +110,8 @@ if $pueue_status.exit_code != 0 {
 source atuin_init.nu
 
 # Zellij
-if (is-linux) and not ((is-in-nvim) or (is-in-zellij) or (is-in-wezterm)) {
-    exec zellij
-}
+# if (is-linux) and not ((is-in-nvim) or (is-in-zellij) or (is-in-wezterm)) {
+#     exec zellij
+# }
 
 source zoxide.nu
