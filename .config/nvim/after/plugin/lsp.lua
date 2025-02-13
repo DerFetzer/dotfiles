@@ -173,7 +173,7 @@ require 'lspconfig'.clangd.setup {
     capabilities = capabilities,
 }
 
-require("lspconfig").ruff_lsp.setup {
+require("lspconfig").ruff.setup {
     on_attach = function(client, bufnr)
         on_attach(client, bufnr)
         client.server_capabilities.hoverProvider = false
@@ -181,7 +181,7 @@ require("lspconfig").ruff_lsp.setup {
     capabilities = capabilities,
 }
 
-require("lspconfig").typst_lsp.setup {
+require("lspconfig").tinymist.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
