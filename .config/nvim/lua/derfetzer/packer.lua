@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     {
         'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
+        version = '^5', -- Recommended
         lazy = false,   -- This plugin is already lazy
     },
     {
@@ -44,7 +44,7 @@ return {
     -- Debugging
     "nvim-lua/plenary.nvim",
     "mfussenegger/nvim-dap",
-    { "mfussenegger/nvim-dap-python",     branch = "multi-session" },
+    "mfussenegger/nvim-dap-python",
     { "rcarriga/nvim-dap-ui",             dependencies = { "mfussenegger/nvim-dap" } },
 
     { "williamboman/mason.nvim" },
@@ -106,7 +106,6 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        -- version = "release" -- To the latest release
     },
     {
         "NeogitOrg/neogit",
@@ -157,12 +156,6 @@ return {
                     restore_upcoming_session = true,
                 },
             }
-        end
-    },
-    {
-        "natecraddock/workspaces.nvim",
-        config = function()
-            require("workspaces").setup {}
         end
     },
     {

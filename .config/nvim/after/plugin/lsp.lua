@@ -28,16 +28,9 @@ local on_attach = function(client, bufnr)
         { "td",         "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find document symbols" },
         { "K",          vim.lsp.buf.hover,                         desc = "Hover" },
         { "<C-k>",      vim.lsp.buf.signature_help,                desc = "Show signature" },
-        { "<leader>sa", vim.lsp.buf.add_workspace_folder,          desc = "Add workspace folder" },
-        { "<leader>sr", vim.lsp.buf.remove_workspace_folder,       desc = "Remove workspace following" },
-        {
-            "<leader>sl",
-            function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-            desc = "List workspace foders"
-        },
-        { "<leader>cr", vim.lsp.buf.rename,      desc = "Rename" },
-        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code action" },
-        { "<leader>f",  vim.lsp.buf.format,      desc = "Format" },
+        { "<leader>cr", vim.lsp.buf.rename,                        desc = "Rename" },
+        { "<leader>ca", vim.lsp.buf.code_action,                   desc = "Code action" },
+        { "<leader>f",  vim.lsp.buf.format,                        desc = "Format" },
     }
     )
 
