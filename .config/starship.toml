@@ -9,6 +9,9 @@ style = "bold green"
 [git_commit]
 only_detached = false
 
+[hostname]
+ssh_only = false
+
 # palette tables should be last in the config ⚓️
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
