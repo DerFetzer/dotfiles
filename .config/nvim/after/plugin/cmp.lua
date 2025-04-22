@@ -92,7 +92,7 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-        ["<C-p>"] = cmp.config.disable,
+        ["<C-P>"] = cmp.config.disable,
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },

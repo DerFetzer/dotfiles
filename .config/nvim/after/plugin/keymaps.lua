@@ -179,14 +179,11 @@ wk.add({
 -- Trouble
 wk.add({
     { "<leader>x",  group = "Trouble" },
-    { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Toggle" },
-    { "<leader>xD", "<cmd>TroubleToggle lsp_definitions<cr>",       desc = "Lsp definitions" },
-    { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document" },
-    { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "Loclist" },
-    { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix" },
-    { "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>",        desc = "LSP references" },
-    { "<leader>xt", "<cmd>TroubleToggle lsp_type_definitions<cr>",  desc = "Lsp type definitions" },
-    { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace" },
+    { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Toggle" },
+    { "<leader>xD", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "Lsp definitions" },
+    { "<leader>xd", "<cmd>Trouble toggle filter.buf=0<cr>",                       desc = "Document" },
+    { "<leader>xl", "<cmd>Trouble loclist toggle<cr>",                            desc = "Loclist" },
+    { "<leader>xq", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix" },
 })
 
 -- Windows
