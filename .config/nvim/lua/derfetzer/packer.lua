@@ -62,7 +62,6 @@ return {
                     "lua-language-server",
                     "pyright",
                     "ruff",
-                    "ruff-lsp",
                     "rust-analyzer",
                     "selene",
                     "stylua",
