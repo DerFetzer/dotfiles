@@ -73,7 +73,7 @@ if dir_name == "rust" then
     -- Overrides for rustc
     settings = {
         ["rust-analyzer"] = {
-            checkOnSave = {
+            check = {
                 overrideCommand = { "python3", "x.py", "check", "--json-output" }
             },
             rustfmt = {
@@ -90,7 +90,7 @@ if dir_name == "rust" then
 else
     settings = {
         ["rust-analyzer"] = {
-            checkOnSave = {
+            check = {
                 command = "clippy"
             }
         }
