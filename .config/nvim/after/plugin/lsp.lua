@@ -1,7 +1,6 @@
 local wk = require("which-key")
 
 require("mason").setup()
-require("mason-lspconfig").setup()
 
 require("java").setup()
 

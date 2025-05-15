@@ -45,10 +45,9 @@ return {
     "nvim-lua/plenary.nvim",
     "mfussenegger/nvim-dap",
     "mfussenegger/nvim-dap-python",
-    { "rcarriga/nvim-dap-ui",             dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui",   dependencies = { "mfussenegger/nvim-dap" } },
 
     { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         config = function()
@@ -60,7 +59,7 @@ return {
                     "glow",
                     "hadolint",
                     "lua-language-server",
-                    "pyright",
+                    "basedpyright",
                     "ruff",
                     "rust-analyzer",
                     "selene",
