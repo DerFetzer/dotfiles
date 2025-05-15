@@ -150,9 +150,7 @@ return {
         "rmagatti/auto-session",
         config = function()
             require("auto-session").setup {
-                cwd_change_handling = {
-                    restore_upcoming_session = true,
-                },
+                cwd_change_handling = true
             }
         end
     },

@@ -33,6 +33,7 @@ local options = {
     list = true,                             -- display certain whitespace
     listchars = { tab = '» ', trail = '·', nbsp = '␣' },
     inccommand = "split",                    -- preview substitutions
+    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 }
 
 vim.opt.shortmess:append "c"
@@ -45,7 +46,6 @@ vim.opt.guifont = "JetBrainsMono NF:h10.0"
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.cmd "set sessionoptions+=globals"
 vim.cmd "set title"
 
 -- Workaround for https://github.com/wez/wezterm/issues/4607
