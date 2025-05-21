@@ -9,6 +9,9 @@ style = "bold green"
 [git_commit]
 only_detached = false
 
+[git_status]
+disabled = true
+
 [hostname]
 ssh_only = false
 
