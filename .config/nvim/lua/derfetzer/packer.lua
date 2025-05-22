@@ -13,7 +13,8 @@ return {
             -- Do nothing here since LSP functions cannot be imported at this moment
         end,
     },
-    "nvim-java/nvim-java",
+    -- Wait for fix of https://github.com/nvim-java/nvim-java/issues/384
+    -- "nvim-java/nvim-java",
 
     -- cmp
     "hrsh7th/cmp-nvim-lsp",

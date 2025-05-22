@@ -2,8 +2,6 @@ local wk = require("which-key")
 
 require("mason").setup()
 
-require("java").setup()
-
 -- Mappings.
 
 -- Use an on_attach function to only map the following keys
@@ -126,10 +124,12 @@ vim.g.rustaceanvim = {
     }
 }
 
-require 'lspconfig'.basedpyright.setup {
+vim.lsp.config("*", {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
+
+vim.lsp.enable('basedpyright')
 
 require 'lspconfig'.lua_ls.setup {
     on_attach = on_attach,
@@ -160,26 +160,22 @@ require 'lspconfig'.lua_ls.setup {
     }
 }
 
-require 'lspconfig'.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+vim.lsp.enable('clangd')
 
-require("lspconfig").ruff.setup {
+vim.lsp.enable('ruff')
+vim.lsp.config('ruff', {
     on_attach = function(client, bufnr)
         on_attach(client, bufnr)
         client.server_capabilities.hoverProvider = false
     end,
-    capabilities = capabilities,
-}
+})
 
-require("lspconfig").tinymist.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
+vim.lsp.enable('tinymist')
+vim.lsp.config('tinymist', {
     settings = {
         exportPdf = "never" -- Choose onType, onSave or never.
     }
-}
+})
 vim.filetype.add({
     extension = { typ = 'typst' }
 })
@@ -194,15 +190,11 @@ require("crates").setup {
     }
 }
 
-require 'lspconfig'.nushell.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+vim.lsp.enable('nushell')
 
-require 'lspconfig'.jdtls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+-- Wait for fix of https://github.com/nvim-java/nvim-java/issues/384
+-- require('java').setup()
+-- vim.lsp.enable('jdtls')
 
 -- Diagnostics
 vim.diagnostic.config {
