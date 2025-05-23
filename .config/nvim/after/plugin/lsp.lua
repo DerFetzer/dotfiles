@@ -60,6 +60,16 @@ local on_attach = function(client, bufnr)
     end
 end
 
+local function wrap_on_attach(client_name)
+    local builtin_on_attach = vim.lsp.config[client_name].on_attach
+    return function(client, bufnr)
+        if builtin_on_attach ~= nil then
+            builtin_on_attach(client, bufnr)
+        end
+        on_attach(client, bufnr)
+    end
+end
+
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local settings
@@ -125,11 +135,13 @@ vim.g.rustaceanvim = {
 }
 
 vim.lsp.config("*", {
-    on_attach = on_attach,
     capabilities = capabilities,
 })
 
 vim.lsp.enable('basedpyright')
+vim.lsp.config('basedpyright', {
+    on_attach = wrap_on_attach('basedpyright')
+})
 
 require 'lspconfig'.lua_ls.setup {
     on_attach = on_attach,
@@ -160,18 +172,22 @@ require 'lspconfig'.lua_ls.setup {
     }
 }
 
+
 vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
+    on_attach = wrap_on_attach('clangd')
+})
 
 vim.lsp.enable('ruff')
 vim.lsp.config('ruff', {
     on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
         client.server_capabilities.hoverProvider = false
     end,
 })
 
 vim.lsp.enable('tinymist')
 vim.lsp.config('tinymist', {
+    on_attach = wrap_on_attach('tinymist'),
     settings = {
         exportPdf = "never" -- Choose onType, onSave or never.
     }
@@ -191,6 +207,9 @@ require("crates").setup {
 }
 
 vim.lsp.enable('nushell')
+vim.lsp.config('nushell', {
+    on_attach = wrap_on_attach('nushell')
+})
 
 -- Wait for fix of https://github.com/nvim-java/nvim-java/issues/384
 -- require('java').setup()
