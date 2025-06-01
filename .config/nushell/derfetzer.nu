@@ -115,3 +115,4 @@ source atuin_init.nu
 # }
 
 source zoxide.nu
+source yazi.nu
