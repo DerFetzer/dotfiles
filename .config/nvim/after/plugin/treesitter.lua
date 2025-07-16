@@ -4,7 +4,7 @@ if vim.fn.has("win32") == 1 then
 end
 require 'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
-    ensure_installed = { "c", "lua", "python", "rust", "cpp" },
+    ensure_installed = { "c", "lua", "python", "rust", "cpp", "nu" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,

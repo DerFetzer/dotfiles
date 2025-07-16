@@ -209,10 +209,6 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        dependencies = {
-            -- NOTE: additional parser
-            { "nushell/tree-sitter-nu" },
-        },
         build = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     },
     "nvim-treesitter/nvim-treesitter-context",
