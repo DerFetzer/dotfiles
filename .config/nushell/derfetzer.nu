@@ -65,7 +65,7 @@ def flac-to-mp3-recursive [] {
     let mp3s = glob **/*.mp3
     ($flacs 
         | path parse
-        | filter {|f| $in | update extension "mp3" | path join | $in not-in $mp3s}
+        | where {|f| $in | update extension "mp3" | path join | $in not-in $mp3s}
         | sort
         | par-each -t 8 {|in| run-external "ffmpeg" "-i" $"($in | path join)" "-codec:a" "libmp3lame" "-qscale:a" "2" $"($in | update extension "mp3" | path join)"}
         | ignore
@@ -105,6 +105,11 @@ do { pueue clean | complete } # Workaround for https://github.com/Nukesor/pueue/
 let pueue_status = do { pueue status } | complete
 if $pueue_status.exit_code != 0 {
     do { pueued -d }
+}
+
+# openssh-agent under Windows
+if not (is-linux) {
+    $env.SSH_AUTH_SOCK = '\\.\pipe\openssh-ssh-agent'
 }
 
 source atuin_init.nu
