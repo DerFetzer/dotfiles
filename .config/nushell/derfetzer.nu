@@ -96,6 +96,13 @@ def restore-cold-archives [target: path] {
     }
 }
 
+def cargo-update-bin [] {
+     cargo install --list
+     | parse "{package} v{version}:"
+     | get package
+     | each { |p| cargo install $p --locked | ignore }
+}
+
 # https://github.com/nushell/nushell/issues/247#issuecomment-2209629106
 def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
