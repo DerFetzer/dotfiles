@@ -146,7 +146,7 @@ vim.lsp.config('basedpyright', {
     on_attach = wrap_on_attach('basedpyright')
 })
 
-require 'lspconfig'.lua_ls.setup {
+vim.lsp.config("lua_ls", {
     on_attach = on_attach,
     capabilities = capabilities,
     on_init = function(client)
@@ -173,7 +173,7 @@ require 'lspconfig'.lua_ls.setup {
     settings = {
         Lua = {}
     }
-}
+})
 
 
 vim.lsp.enable('clangd')
