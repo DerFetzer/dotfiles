@@ -99,6 +99,9 @@ else
         ["rust-analyzer"] = {
             check = {
                 command = "clippy"
+            },
+            cargo = {
+                features = "all"
             }
         }
     }
@@ -119,15 +122,15 @@ vim.g.rustaceanvim = {
             wk.add({
                 buffer = buffer,
                 { "<leader>r",  group = "Rust" },
-                { "<leader>rr", function() vim.cmd.RustLsp("runnables") end,         desc = "Runnables" },
-                { "<leader>rd", function() vim.cmd.RustLsp("debuggables") end,       desc = "Debuggables" },
-                { "<leader>rt", function() vim.cmd.RustLsp("testables") end,         desc = "Testables" },
-                { "<leader>rk", function() vim.cmd.RustLsp("hover", "actions") end,  desc = "Hover actions" },
-                { "<leader>rc", function() vim.cmd.RustLsp("codeActios") end,        desc = "Code action group" },
-                { "<leader>re", function() vim.cmd.RustLsp("expandMacro") end,       desc = "Expand macro" },
-                { "<leader>rE", function() vim.cmd.RustLsp("explainError") end,      desc = "Explain Error" },
-                { "<leader>rR", function() vim.cmd.RustLsp("renderDiagnostics") end, desc = "Render diagnostics" },
-                { "<leader>ro", function() vim.cmd.RustLsp("openDocs") end,          desc = "Open external docs" },
+                { "<leader>rr", function() vim.cmd.RustLsp("runnables") end,        desc = "Runnables" },
+                { "<leader>rd", function() vim.cmd.RustLsp("debuggables") end,      desc = "Debuggables" },
+                { "<leader>rt", function() vim.cmd.RustLsp("testables") end,        desc = "Testables" },
+                { "<leader>rk", function() vim.cmd.RustLsp("hover", "actions") end, desc = "Hover actions" },
+                { "<leader>rc", function() vim.cmd.RustLsp("codeAction") end,       desc = "Code action group" },
+                { "<leader>re", function() vim.cmd.RustLsp("expandMacro") end,      desc = "Expand macro" },
+                { "<leader>rE", function() vim.cmd.RustLsp("explainError") end,     desc = "Explain Error" },
+                { "<leader>rR", function() vim.cmd.RustLsp("renderDiagnostic") end, desc = "Render diagnostics" },
+                { "<leader>ro", function() vim.cmd.RustLsp("openDocs") end,         desc = "Open external docs" },
             })
         end,
         settings = settings
