@@ -43,6 +43,7 @@ wk.add({
     { "<leader>tn",  "<cmd>Telescope grep_string<cr>",                                                     desc = "Grep in files for word under cursor" },
     { "<leader>to",  "<cmd>Telescope oldfiles<cr>",                                                        desc = "Recent files" },
     { "<leader>tr",  "<cmd>Telescope resume<cr>",                                                          desc = "Last picker" },
+    { "<leader>tR",  "<cmd>Telescope pickers<cr>",                                                         desc = "Last pickers" },
     { "<leader>tt",  "<cmd>Telescope<cr>",                                                                 desc = "List builtin pickers" },
     { "<leader>tw",  "<cmd>Telescope workspaces<cr>",                                                      desc = "Workspaces" },
 })

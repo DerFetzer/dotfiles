@@ -17,8 +17,6 @@ local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/s
 
 config.keys = {}
 
-workspace_switcher.apply_to_config(config)
-
 workspace_switcher.workspace_formatter = function(label)
     return wezterm.format({
         { Attribute = { Intensity = "Bold" } },
@@ -111,6 +109,11 @@ config.keys = {
         key = "b",
         mods = "ALT",
         action = workspace_switcher.switch_workspace(),
+    },
+    {
+        key = "l",
+        mods = "ALT",
+        action = workspace_switcher.switch_to_prev_workspace(),
     }
 }
 

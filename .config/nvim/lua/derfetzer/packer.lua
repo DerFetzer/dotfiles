@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     {
         'mrcjkb/rustaceanvim',
-        version = '^6', -- Recommended
+        version = '^7', -- Recommended
         lazy = false,   -- This plugin is already lazy
     },
     {
@@ -200,7 +200,7 @@ return {
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        version = "*",
         dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-live-grep-args.nvim" } }
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },

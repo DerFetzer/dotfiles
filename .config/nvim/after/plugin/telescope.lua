@@ -8,10 +8,10 @@ require('telescope').setup {
             "--line-number",
             "--column",
             "--smart-case",
-            "--max-count=5" -- Limit number of matches per file
+            "--max-count=10" -- Limit number of matches per file
         },
         cache_picker = {
-            num_pickers = 5,
+            num_pickers = 10,
             limit_entries = 1000,
         },
     },
