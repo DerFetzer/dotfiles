@@ -146,8 +146,9 @@ vim.lsp.config('basedpyright', {
     on_attach = wrap_on_attach('basedpyright')
 })
 
+vim.lsp.enable("lua_ls")
 vim.lsp.config("lua_ls", {
-    on_attach = on_attach,
+    on_attach = wrap_on_attach("lua_ls"),
     capabilities = capabilities,
     on_init = function(client)
         local path = client.workspace_folders[1].name
