@@ -80,9 +80,26 @@ wk.add({
     { "<leader>q",        closeBuffer,  desc = "Close current buffer" },
 })
 
+-- Bufferline
 wk.add({
     { "(", "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer" },
     { ")", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+})
+
+local bufferline = require("bufferline")
+wk.add({
+    { "<leader>b",    group = "Buffer" },
+    { "<leader>bp",   "<cmd>BufferLineTogglePin<cr>",                                                           desc = "Toggle pin" },
+    { "<leader>bC",   "<cmd>BufferLineCloseOthers<cr>",                                                         desc = "Close other buffers" },
+    { "<leader>b(",   "<cmd>BufferLineMovePrev<cr>",                                                            desc = "Move buffer backwards" },
+    { "<leader>b)",   "<cmd>BufferLineMoveNext<cr>",                                                            desc = "Move buffer forwards" },
+
+    { "<leader>bs",   group = "Sort" },
+    { "<leader>bse)", "<cmd>BufferLineSortByExtension<cr>",                                                     desc = "by extension" },
+    { "<leader>bst)", "<cmd>BufferLineSortByTabs<cr>",                                                          desc = "by tabs" },
+    { "<leader>bsd)", "<cmd>BufferLineSortByDirectory<cr>",                                                     desc = "by directory" },
+    { "<leader>bsr)", "<cmd>BufferLineSortByRelativeDirectory<cr>",                                             desc = "by relative directory" },
+    { "<leader>bsi)", function() bufferline.sort_by(function(buf_a, buf_b) return buf_a.id < buf_b.id end) end, desc = "by index (default)" },
 })
 
 -- ToggleTerm
@@ -99,15 +116,15 @@ wk.add({
 local neogit = require('neogit')
 wk.add({
     { "<leader>g",  group = "Git" },
-    { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle blame current line" },
-    { "<leader>gH", "<cmd>Gitsigns previous_hunk<cr>",             desc = "Previous hunk" },
-    { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset buffer" },
-    { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                desc = "Blame line" },
-    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                  desc = "Diff" },
-    { "<leader>gh", "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next hunk" },
-    { "<leader>gn", neogit.open,                                   desc = "Neogit" },
-    { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview hunk" },
-    { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                desc = "Reset hunk" },
+    { "<leader>gB", "<cmd>Gitsigns blame<cr>",         desc = "Show blame" },
+    { "<leader>gH", "<cmd>Gitsigns previous_hunk<cr>", desc = "Previous hunk" },
+    { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",  desc = "Reset buffer" },
+    { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",    desc = "Blame line" },
+    { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",      desc = "Diff" },
+    { "<leader>gh", "<cmd>Gitsigns next_hunk<cr>",     desc = "Next hunk" },
+    { "<leader>gn", neogit.open,                       desc = "Neogit" },
+    { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",  desc = "Preview hunk" },
+    { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",    desc = "Reset hunk" },
 })
 
 -- Debugging

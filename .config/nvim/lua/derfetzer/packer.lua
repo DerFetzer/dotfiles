@@ -13,8 +13,7 @@ return {
             -- Do nothing here since LSP functions cannot be imported at this moment
         end,
     },
-    -- Wait for fix of https://github.com/nvim-java/nvim-java/issues/384
-    -- "nvim-java/nvim-java",
+    "nvim-java/nvim-java",
 
     -- cmp
     "hrsh7th/cmp-nvim-lsp",
@@ -135,7 +134,7 @@ return {
             require("nvim-tree").setup {}
         end,
     },
-    "mbbill/undotree",
+    -- "mbbill/undotree",
     { "akinsho/bufferline.nvim",             version = "v4.*", dependencies = "nvim-tree/nvim-web-devicons" },
     {
         'stevearc/aerial.nvim',
@@ -190,11 +189,14 @@ return {
             require("trouble").setup {}
         end
     },
-    "famiu/bufdelete.nvim",
+    "famiu/bufdelete.nvim", -- Archived
+
     {
-        "ellisonleao/glow.nvim",
-        config = true,
-        cmd = "Glow",
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+
+        -- Completion for `blink.cmp`
+        -- dependencies = { "saghen/blink.cmp" },
     },
 
     -- Telescope
