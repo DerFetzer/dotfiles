@@ -227,6 +227,43 @@ wk.add({
     { "<C-U>", "<C-U>zz", desc = "Up" },
 })
 
+-- Leap
+wk.add({
+    mode = { "n", "x", "o" },
+    { "s", "<Plug>(leap)", desc = "Leap" }
+})
+wk.add({
+    mode = { "n" },
+    { "S", "<Plug>(leap-from-window)", desc = "Leap from window" }
+})
+-- Treesitter node selection
+wk.add({
+    mode = { "x", "o" },
+    {
+        "R",
+        function()
+            require('leap.treesitter').select {
+                opts = require('leap.user').with_traversal_keys('R', 'r')
+            }
+        end,
+        desc = "Treesitter"
+    }
+})
+-- Remote operations
+wk.add({
+    mode = { "n", "o" },
+    {
+        "gs",
+        function()
+            require('leap.remote').action {
+                -- Automatically enter Visual mode when coming from Normal.
+                input = vim.fn.mode(true):match('o') and '' or 'v'
+            }
+        end,
+        desc = "Leap remote"
+    }
+})
+
 -- Harpoon
 harpoon:setup()
 wk.add({

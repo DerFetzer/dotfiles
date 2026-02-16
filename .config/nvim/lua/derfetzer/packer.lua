@@ -167,7 +167,7 @@ return {
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }
     },
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
