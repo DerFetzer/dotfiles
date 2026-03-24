@@ -77,6 +77,7 @@ end
 
 wk.add({
     { "<leader><leader>", "<cmd>w<cr>", desc = "Write current buffer" },
+    { "<leader><cr>",     "<cmd>w<cr>", desc = "Write current buffer" },
     { "<leader>q",        closeBuffer,  desc = "Close current buffer" },
 })
 

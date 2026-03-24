@@ -51,6 +51,9 @@ vim.cmd "set title"
 -- Workaround for https://github.com/wez/wezterm/issues/4607
 vim.cmd "set notermsync"
 
+-- Filetypes
+vim.filetype.add({ extension = { arxml = 'xml' } })
+
 -- Leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
