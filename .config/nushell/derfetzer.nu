@@ -108,17 +108,14 @@ def disown [...command: string] {
         sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
 }
 
-do { pueue clean | complete } # Workaround for https://github.com/Nukesor/pueue/issues/541
-let pueue_status = do { pueue status } | complete
-if $pueue_status.exit_code != 0 {
-    do { pueued -d }
-}
-
 # openssh-agent under Windows
 if not (is-linux) {
     $env.SSH_AUTH_SOCK = '\\.\pipe\openssh-ssh-agent'
 }
 
+if (is-linux) {
+    source atuin_hex_init.nu
+}
 source atuin_init.nu
 
 # Zellij
