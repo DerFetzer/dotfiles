@@ -67,7 +67,7 @@ def flac-to-mp3-recursive [] {
         | path parse
         | where {|f| $in | update extension "mp3" | path join | $in not-in $mp3s}
         | sort
-        | par-each -t 8 {|in| run-external "ffmpeg" "-i" $"($in | path join)" "-codec:a" "libmp3lame" "-qscale:a" "2" $"($in | update extension "mp3" | path join)"}
+        | par-each -t 8 {|path| run-external "ffmpeg" "-i" $"($path | path join)" "-codec:a" "libmp3lame" "-qscale:a" "2" $"($path | update extension "mp3" | path join)"}
         | ignore
     )
 }
