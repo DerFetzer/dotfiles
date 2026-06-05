@@ -5,10 +5,10 @@ local harpoon = require("harpoon")
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 wk.add({
-    { "<leader>e", vim.diagnostic.open_float, desc = "Diagnostics open" },
-    { "<leader>r", vim.diagnostic.goto_prev,  desc = "Diagnostics previous" },
-    { "<leader>n", vim.diagnostic.goto_next,  desc = "Diagnostics next" },
-    { "<leader>E", vim.diagnostic.setloclist, desc = "Diagnostics locations" },
+    { "<leader>e", vim.diagnostic.open_float,                                        desc = "Diagnostics open" },
+    { "<leader>r", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Diagnostics previous" },
+    { "<leader>",  function() vim.diagnostic.jump({ count = 1, float = true }) end,  desc = "Diagnostics next" },
+    { "<leader>E", vim.diagnostic.setloclist,                                        desc = "Diagnostics locations" },
 })
 
 -- Quickfix
@@ -255,19 +255,44 @@ wk.add({
     { "S", "<Plug>(leap-from-window)", desc = "Leap from window" }
 })
 -- Treesitter node selection
+-- Remote operations
 wk.add({
     mode = { "x", "o" },
     {
-        "R",
-        function()
-            require('leap.treesitter').select {
-                opts = require('leap.user').with_traversal_keys('R', 'r')
-            }
-        end,
-        desc = "Treesitter"
+        "ar",
+        "<Plug>(leap-remote-text-object)",
+        desc = "Text object"
+    },
+    {
+        "ir",
+        "<Plug>(leap-remote-inner-text-object)",
+        desc = "Text object"
     }
 })
--- Remote operations
+wk.add({
+    mode = { "x" },
+    {
+        "an",
+        function()
+            require('leap.treesitter').select {
+                opts = require('leap.user').with_traversal_keys('n', 'N')
+            }
+        end,
+        desc = "Treesitter node"
+    },
+})
+-- In operator-pending mode traversal does not make sense
+-- and traversal keys are somehow ignored
+wk.add({
+    mode = { "o" },
+    {
+        "an",
+        function()
+            require('leap.treesitter').select()
+        end,
+        desc = "Treesitter node"
+    },
+})
 wk.add({
     mode = { "n", "o" },
     {
