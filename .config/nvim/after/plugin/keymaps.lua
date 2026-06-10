@@ -7,7 +7,7 @@ local harpoon = require("harpoon")
 wk.add({
     { "<leader>e", vim.diagnostic.open_float,                                        desc = "Diagnostics open" },
     { "<leader>r", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Diagnostics previous" },
-    { "<leader>",  function() vim.diagnostic.jump({ count = 1, float = true }) end,  desc = "Diagnostics next" },
+    { "<leader>n", function() vim.diagnostic.jump({ count = 1, float = true }) end,  desc = "Diagnostics next" },
     { "<leader>E", vim.diagnostic.setloclist,                                        desc = "Diagnostics locations" },
 })
 
