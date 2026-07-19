@@ -1,5 +1,5 @@
 def is-linux [] {
-    let os_version = sys host | get "name" | str downcase
+    let os_version = sys host | get "name" | str lowercase
     "linux" in $os_version
 }
 
@@ -113,9 +113,9 @@ if not (is-linux) {
     $env.SSH_AUTH_SOCK = '\\.\pipe\openssh-ssh-agent'
 }
 
-if (is-linux) {
-    source atuin_hex_init.nu
-}
+# if (is-linux) {
+#     source atuin_hex_init.nu
+# }
 source atuin_init.nu
 
 # Zellij
